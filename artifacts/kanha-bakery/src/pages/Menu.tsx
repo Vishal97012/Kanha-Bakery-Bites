@@ -1,113 +1,188 @@
 import { useState } from "react";
-import { Star, ShoppingCart } from "lucide-react";
-import { CAKES, type Cake } from "@/lib/data";
-import { addToCart, WHATSAPP_NUMBER, generateWhatsAppMessage, getCart } from "@/lib/cart";
+import { ShoppingCart } from "lucide-react";
+import { addToCart, WHATSAPP_NUMBER } from "@/lib/cart";
 
-const WEIGHTS: Array<"500g" | "1kg" | "2kg"> = ["500g", "1kg", "2kg"];
+import cakeChocolateTruffle from "@assets/IMG-20260326-WA0090_1775751113041.jpg";
+import cakeBlackForest from "@assets/IMG-20260326-WA0078_1775751112788.jpg";
+import cakeButterscotch from "@assets/IMG-20260401-WA0006_1775751112757.jpg";
+import cakeRedVelvet from "@assets/IMG-20260326-WA0086_1775751113012.jpg";
+import cakePineapple from "@assets/IMG-20260401-WA0005_1775751112723.jpg";
+import cakeStrawberry from "@assets/IMG-20260326-WA0077(1)_1775751112809.jpg";
+import cakeBlueberry from "@assets/IMG-20260326-WA0085_1775751112935.jpg";
+import cakeVanilla from "@assets/IMG-20260326-WA0087_1775751112958.jpg";
+import cakeOreo from "@assets/IMG-20260326-WA0081_1775751112893.jpg";
+import cakeKitKat from "@assets/IMG-20260331-WA0001_1775751113122.jpg";
 
-function CakeCard({ cake }: { cake: Cake }) {
-  const [selectedWeight, setSelectedWeight] = useState<"500g" | "1kg" | "2kg">("1kg");
+interface MenuItem {
+  id: string;
+  name: string;
+  description: string;
+  price: number;
+  image: string;
+  isImageUrl?: boolean;
+  badge?: string;
+  weight?: string;
+}
+
+interface Category {
+  key: string;
+  label: string;
+  emoji: string;
+  color: string;
+  items: MenuItem[];
+}
+
+const CATEGORIES: Category[] = [
+  {
+    key: "cakes",
+    label: "Cakes",
+    emoji: "🎂",
+    color: "from-pink-100 to-rose-50",
+    items: [
+      { id: "c1", name: "Chocolate Truffle Cake", description: "Rich dark chocolate cake with silky truffle ganache", price: 750, image: cakeChocolateTruffle, badge: "Best Seller", weight: "1kg" },
+      { id: "c2", name: "Black Forest Cake", description: "Classic chocolate cherry cake with whipped cream", price: 650, image: cakeBlackForest, badge: "Popular", weight: "1kg" },
+      { id: "c3", name: "Butterscotch Cake", description: "Crunchy butterscotch cake with caramel cream", price: 720, image: cakeButterscotch, weight: "1kg" },
+      { id: "c4", name: "Red Velvet Cake", description: "Soft velvety cake with creamy cheese frosting", price: 850, image: cakeRedVelvet, badge: "New", weight: "1kg" },
+      { id: "c5", name: "Pineapple Cake", description: "Fresh pineapple cake with tropical fruit cream", price: 600, image: cakePineapple, weight: "1kg" },
+      { id: "c6", name: "Strawberry Cake", description: "Strawberry cream cake with fresh fruit layers", price: 650, image: cakeStrawberry, weight: "1kg" },
+      { id: "c7", name: "Blueberry Cake", description: "Blueberry flavored cake with berry cream topping", price: 780, image: cakeBlueberry, weight: "1kg" },
+      { id: "c8", name: "Vanilla Cake", description: "Classic soft vanilla sponge with light whipped cream", price: 550, image: cakeVanilla, weight: "1kg" },
+      { id: "c9", name: "Oreo Cake", description: "Oreo chocolate cake with cookies and cream frosting", price: 720, image: cakeOreo, badge: "Trending", weight: "1kg" },
+      { id: "c10", name: "KitKat Cake", description: "Chocolate KitKat cake with crispy wafer layers", price: 850, image: cakeKitKat, weight: "1kg" },
+    ],
+  },
+  {
+    key: "pizza",
+    label: "Pizza",
+    emoji: "🍕",
+    color: "from-orange-100 to-amber-50",
+    items: [
+      { id: "p1", name: "Veg Pizza", description: "Cheese loaded veggie pizza with fresh toppings", price: 149, image: "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=400&h=300&fit=crop", isImageUrl: true },
+      { id: "p2", name: "Cheese Pizza", description: "Extra cheese pizza with mozzarella overload", price: 169, image: "https://images.unsplash.com/photo-1571997478779-2adcbbe9ab2f?w=400&h=300&fit=crop", isImageUrl: true },
+      { id: "p3", name: "Paneer Pizza", description: "Paneer tikka topping pizza with spicy sauce", price: 199, image: "https://images.unsplash.com/photo-1513104890138-7c749659a591?w=400&h=300&fit=crop", isImageUrl: true },
+      { id: "p4", name: "Corn Pizza", description: "Sweet corn pizza with creamy white sauce", price: 159, image: "https://images.unsplash.com/photo-1594007654729-407eedc4be65?w=400&h=300&fit=crop", isImageUrl: true },
+      { id: "p5", name: "Farmhouse Pizza", description: "Mixed veg farmhouse pizza with herbed base", price: 199, image: "https://images.unsplash.com/photo-1534308983496-4fabb1a015ee?w=400&h=300&fit=crop", isImageUrl: true },
+    ],
+  },
+  {
+    key: "momos",
+    label: "Momos",
+    emoji: "🥟",
+    color: "from-green-100 to-emerald-50",
+    items: [
+      { id: "m1", name: "Veg Momos", description: "Steamed veg momos with spicy red chutney", price: 80, image: "https://images.unsplash.com/photo-1585032226651-759b368d7246?w=400&h=300&fit=crop", isImageUrl: true },
+      { id: "m2", name: "Paneer Momos", description: "Paneer filled momos with mint dipping sauce", price: 100, image: "https://images.unsplash.com/photo-1496116218417-1a781b1c416c?w=400&h=300&fit=crop", isImageUrl: true },
+      { id: "m3", name: "Fried Momos", description: "Crispy golden fried momos with tangy sauce", price: 90, image: "https://images.unsplash.com/photo-1530469912745-a215c6b256ea?w=400&h=300&fit=crop", isImageUrl: true },
+      { id: "m4", name: "Cheese Momos", description: "Cheese filled momos with creamy dip", price: 120, image: "https://images.unsplash.com/photo-1563245372-f21724e3856d?w=400&h=300&fit=crop", isImageUrl: true },
+      { id: "m5", name: "Tandoori Momos", description: "Spicy tandoori momos grilled to perfection", price: 130, image: "https://images.unsplash.com/photo-1574484284002-952d92456975?w=400&h=300&fit=crop", isImageUrl: true },
+    ],
+  },
+  {
+    key: "maggie",
+    label: "Maggie",
+    emoji: "🍜",
+    color: "from-yellow-100 to-amber-50",
+    items: [
+      { id: "mg1", name: "Plain Maggie", description: "Simple classic maggie with spice mix", price: 40, image: "https://images.unsplash.com/photo-1612929633738-8fe44f7ec841?w=400&h=300&fit=crop", isImageUrl: true },
+      { id: "mg2", name: "Veg Maggie", description: "Vegetable loaded maggie with fresh veggies", price: 60, image: "https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=400&h=300&fit=crop", isImageUrl: true },
+      { id: "mg3", name: "Cheese Maggie", description: "Cheesy maggie with gooey melted cheese", price: 70, image: "https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?w=400&h=300&fit=crop", isImageUrl: true },
+      { id: "mg4", name: "Butter Maggie", description: "Butter maggie with rich creamy buttery taste", price: 60, image: "https://images.unsplash.com/photo-1555126634-323283e090fa?w=400&h=300&fit=crop", isImageUrl: true },
+      { id: "mg5", name: "Masala Maggie", description: "Spicy masala maggie with Indian spices", price: 50, image: "https://images.unsplash.com/photo-1585325701165-e527d22e22be?w=400&h=300&fit=crop", isImageUrl: true },
+    ],
+  },
+  {
+    key: "coffee",
+    label: "Cold Coffee",
+    emoji: "☕",
+    color: "from-amber-100 to-yellow-50",
+    items: [
+      { id: "cc1", name: "Cold Coffee", description: "Classic chilled cold coffee, smooth and refreshing", price: 80, image: "https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=400&h=300&fit=crop", isImageUrl: true },
+      { id: "cc2", name: "Cold Coffee with Ice Cream", description: "Cold coffee topped with creamy vanilla ice cream", price: 120, image: "https://images.unsplash.com/photo-1572490122747-3968b75cc699?w=400&h=300&fit=crop", isImageUrl: true },
+      { id: "cc3", name: "Chocolate Cold Coffee", description: "Rich chocolate blended cold coffee", price: 100, image: "https://images.unsplash.com/photo-1578314675249-a6910f80cc4e?w=400&h=300&fit=crop", isImageUrl: true },
+      { id: "cc4", name: "Oreo Cold Coffee", description: "Oreo blended cold coffee with cookie crumble", price: 110, image: "https://images.unsplash.com/photo-1587049352846-4a222e784d38?w=400&h=300&fit=crop", isImageUrl: true },
+      { id: "cc5", name: "Caramel Cold Coffee", description: "Sweet caramel drizzled cold coffee delight", price: 120, image: "https://images.unsplash.com/photo-1609525313425-eb5d38f869c2?w=400&h=300&fit=crop", isImageUrl: true },
+    ],
+  },
+];
+
+function MenuItemCard({ item, categoryKey }: { item: MenuItem; categoryKey: string }) {
   const [added, setAdded] = useState(false);
 
+  const handleOrderNow = () => {
+    const msg = `Hello Kanha Home Bakery! I want to order:\n\n*${item.name}*\nPrice: ₹${item.price}${item.weight ? `\nWeight: ${item.weight}` : ""}\n\nPlease confirm my order. Thank you!`;
+    window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`, "_blank");
+  };
+
   const handleAddToCart = () => {
-    addToCart({
-      name: cake.name,
-      price: cake.prices[selectedWeight],
-      weight: selectedWeight,
-      quantity: 1,
-      imageEmoji: cake.emoji,
-    });
+    if (categoryKey === "cakes") {
+      addToCart({
+        name: item.name,
+        price: item.price,
+        weight: item.weight || "1kg",
+        quantity: 1,
+        imageEmoji: "🎂",
+      });
+    } else {
+      addToCart({
+        name: item.name,
+        price: item.price,
+        weight: "1 piece",
+        quantity: 1,
+        imageEmoji: CATEGORY_EMOJIS[categoryKey] || "🍽️",
+      });
+    }
     window.dispatchEvent(new Event("cart-updated"));
     setAdded(true);
     setTimeout(() => setAdded(false), 1500);
   };
 
-  const handleOrderNow = () => {
-    const cart = [
-      {
-        id: "temp",
-        name: cake.name,
-        price: cake.prices[selectedWeight],
-        weight: selectedWeight,
-        quantity: 1,
-        imageEmoji: cake.emoji,
-      },
-    ];
-    const msg = generateWhatsAppMessage(cart);
-    window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${msg}`, "_blank");
-  };
-
   return (
-    <div className="cake-card bg-white rounded-2xl border border-border shadow-sm overflow-hidden">
-      {/* Cake image area */}
-      <div className="relative h-36 bg-gradient-to-br from-pink-100 to-amber-50 flex items-center justify-center text-7xl">
-        {cake.emoji}
-        <div className="absolute top-2 left-2 flex flex-col gap-1">
-          {cake.isBestSeller && (
-            <span className="bg-amber-400 text-amber-900 text-[10px] font-bold px-2 py-0.5 rounded-full shadow">
-              ⭐ Best Seller
+    <div className="bg-white rounded-2xl border border-border shadow-sm overflow-hidden cake-card">
+      {/* Image */}
+      <div className="relative h-44 overflow-hidden bg-gray-100">
+        <img
+          src={item.image}
+          alt={item.name}
+          className="w-full h-full object-cover"
+          loading="lazy"
+          onError={(e) => {
+            (e.target as HTMLImageElement).style.display = "none";
+          }}
+        />
+        {item.badge && (
+          <div className="absolute top-2 left-2">
+            <span className="bg-amber-400 text-amber-900 text-[10px] font-bold px-2 py-1 rounded-full shadow">
+              ⭐ {item.badge}
             </span>
-          )}
-          {cake.isNew && (
-            <span className="bg-primary text-white text-[10px] font-bold px-2 py-0.5 rounded-full shadow">
-              New
-            </span>
-          )}
+          </div>
+        )}
+        <div className="absolute bottom-2 right-2 bg-white/90 backdrop-blur-sm rounded-xl px-3 py-1 shadow">
+          <span className="text-primary font-bold text-base">₹{item.price}</span>
         </div>
       </div>
 
+      {/* Info */}
       <div className="p-4">
-        <div className="flex items-start justify-between mb-1">
-          <h3 className="font-bold text-base text-foreground">{cake.name}</h3>
-          <div className="flex items-center gap-0.5 ml-2 flex-shrink-0">
-            <Star size={13} className="fill-amber-400 text-amber-400" />
-            <span className="text-xs font-semibold text-foreground">{cake.rating}</span>
-            <span className="text-xs text-muted-foreground">({cake.reviews})</span>
-          </div>
-        </div>
-        <p className="text-xs text-muted-foreground mb-3 line-clamp-2">{cake.description}</p>
+        <h3 className="font-bold text-base text-foreground">{item.name}</h3>
+        <p className="text-xs text-muted-foreground mt-1 mb-3 line-clamp-2">{item.description}</p>
 
-        {/* Weight selector */}
-        <div className="flex gap-2 mb-3">
-          {WEIGHTS.map((w) => (
-            <button
-              key={w}
-              onClick={() => setSelectedWeight(w)}
-              className={`flex-1 py-1.5 rounded-xl text-xs font-bold border-2 transition-colors ${
-                selectedWeight === w
-                  ? "border-primary bg-primary/10 text-primary"
-                  : "border-border text-muted-foreground hover:border-primary/40"
-              }`}
-            >
-              {w}
-            </button>
-          ))}
-        </div>
-
-        {/* Price */}
-        <div className="flex items-center justify-between mb-3">
-          <span className="text-primary font-bold text-xl">₹{cake.prices[selectedWeight]}</span>
-          <span className="text-xs text-muted-foreground">for {selectedWeight}</span>
-        </div>
-
-        {/* Buttons */}
         <div className="flex gap-2">
           <button
             onClick={handleAddToCart}
             className={`flex-1 py-2.5 rounded-xl text-sm font-bold border-2 flex items-center justify-center gap-1.5 transition-all ${
               added
                 ? "border-green-500 bg-green-50 text-green-600"
-                : "border-primary text-primary hover:bg-primary/5"
+                : "border-primary text-primary"
             }`}
           >
-            <ShoppingCart size={15} />
-            {added ? "Added!" : "Add to Cart"}
+            <ShoppingCart size={14} />
+            {added ? "Added!" : "Add"}
           </button>
           <button
             onClick={handleOrderNow}
             className="flex-1 py-2.5 rounded-xl text-sm font-bold bg-[#25D366] text-white flex items-center justify-center gap-1.5"
           >
-            <span className="text-base">💬</span> Order Now
+            <span>💬</span> Order Now
           </button>
         </div>
       </div>
@@ -115,60 +190,74 @@ function CakeCard({ cake }: { cake: Cake }) {
   );
 }
 
+const CATEGORY_EMOJIS: Record<string, string> = {
+  cakes: "🎂",
+  pizza: "🍕",
+  momos: "🥟",
+  maggie: "🍜",
+  coffee: "☕",
+};
+
 export default function Menu() {
-  const [category, setCategory] = useState<string>("all");
+  const [activeCategory, setActiveCategory] = useState("cakes");
 
-  const categories = [
-    { key: "all", label: "All" },
-    { key: "classic", label: "Classic" },
-    { key: "fruit", label: "Fruit" },
-    { key: "special", label: "Special" },
-  ];
-
-  const filtered =
-    category === "all" ? CAKES : CAKES.filter((c) => c.category === category);
+  const current = CATEGORIES.find((c) => c.key === activeCategory)!;
 
   return (
-    <div className="max-w-lg mx-auto px-4 pb-8">
-      <div className="pt-6 pb-4">
+    <div className="max-w-lg mx-auto pb-8">
+      {/* Header */}
+      <div className="px-4 pt-6 pb-4">
         <h1 className="text-2xl font-bold text-foreground">Our Menu</h1>
-        <p className="text-muted-foreground text-sm mt-1">Freshly baked every day</p>
+        <p className="text-muted-foreground text-sm mt-1">Fresh & delicious — made with love</p>
       </div>
 
-      {/* Category filter */}
-      <div className="flex gap-2 mb-5 overflow-x-auto pb-1 scrollbar-hide">
-        {categories.map((c) => (
+      {/* Category tabs */}
+      <div className="flex gap-2 px-4 mb-5 overflow-x-auto pb-1" style={{ scrollbarWidth: "none" }}>
+        {CATEGORIES.map((cat) => (
           <button
-            key={c.key}
-            onClick={() => setCategory(c.key)}
-            className={`flex-shrink-0 px-4 py-2 rounded-xl text-sm font-bold border-2 transition-colors ${
-              category === c.key
-                ? "border-primary bg-primary text-white"
+            key={cat.key}
+            onClick={() => setActiveCategory(cat.key)}
+            className={`flex-shrink-0 flex items-center gap-1.5 px-4 py-2.5 rounded-2xl text-sm font-bold border-2 transition-all ${
+              activeCategory === cat.key
+                ? "border-primary bg-primary text-white shadow-md"
                 : "border-border text-muted-foreground bg-white"
             }`}
           >
-            {c.label}
+            <span>{cat.emoji}</span>
+            {cat.label}
           </button>
         ))}
       </div>
 
-      {/* Cake grid */}
-      <div className="flex flex-col gap-4">
-        {filtered.map((cake) => (
-          <CakeCard key={cake.id} cake={cake} />
-        ))}
+      {/* Category section */}
+      <div className="px-4">
+        {/* Section heading */}
+        <div className={`rounded-2xl bg-gradient-to-r ${current.color} px-4 py-3 mb-4 flex items-center gap-3`}>
+          <span className="text-3xl">{current.emoji}</span>
+          <div>
+            <div className="font-bold text-foreground text-lg">{current.label}</div>
+            <div className="text-muted-foreground text-xs">{current.items.length} items available</div>
+          </div>
+        </div>
+
+        {/* Items */}
+        <div className="flex flex-col gap-4">
+          {current.items.map((item) => (
+            <MenuItemCard key={item.id} item={item} categoryKey={current.key} />
+          ))}
+        </div>
       </div>
 
       {/* WhatsApp CTA */}
-      <div className="mt-6">
+      <div className="px-4 mt-6">
         <a
-          href={`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent("Hello! I'd like to place a custom order.")}`}
+          href={`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent("Hello Kanha Home Bakery! I'd like to place an order. Can you help me?")}`}
           target="_blank"
           rel="noopener noreferrer"
         >
           <div className="bg-[#25D366] text-white rounded-2xl p-4 text-center shadow-md">
-            <div className="font-bold">Can't find what you want?</div>
-            <div className="text-sm opacity-90 mt-0.5">Chat with us on WhatsApp for custom orders</div>
+            <div className="font-bold text-base">Have a custom order?</div>
+            <div className="text-sm opacity-90 mt-0.5">Chat with us on WhatsApp — we're happy to help!</div>
           </div>
         </a>
       </div>

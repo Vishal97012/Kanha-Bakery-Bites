@@ -1,0 +1,94 @@
+Create a Menu Page for "Kanha Home Bakery"
+
+Requirements:
+
+Create a modern mobile-friendly Menu Page only.
+
+Menu Categories:
+1. Cakes
+2. Pizza
+3. Momos
+4. Maggie
+5. Cold Coffee
+
+Each item must include:
+- Image
+- Item Name
+- Short Description
+- Price
+- Order Now Button (WhatsApp)
+
+Use high quality placeholder images from:
+https://source.unsplash.com/
+
+Example:
+https://source.unsplash.com/400x300/?cake
+https://source.unsplash.com/400x300/?pizza
+https://source.unsplash.com/400x300/?momos
+https://source.unsplash.com/400x300/?coffee
+
+------------------------------------------------
+
+CAKES (Add these items)
+
+Chocolate Truffle Cake - Rich chocolate cake - ₹750
+Black Forest Cake - Classic chocolate cherry cake - ₹650
+Butterscotch Cake - Crunchy butterscotch cake - ₹720
+Red Velvet Cake - Soft creamy cake - ₹850
+Pineapple Cake - Fresh pineapple cake - ₹600
+Strawberry Cake - Strawberry cream cake - ₹650
+Blueberry Cake - Blueberry flavor cake - ₹780
+Vanilla Cake - Classic vanilla cake - ₹550
+Oreo Cake - Oreo chocolate cake - ₹720
+KitKat Cake - Chocolate KitKat cake - ₹850
+
+------------------------------------------------
+
+PIZZA
+
+Veg Pizza - Cheese loaded veg pizza - ₹149
+Cheese Pizza - Extra cheese pizza - ₹169
+Paneer Pizza - Paneer topping pizza - ₹199
+Corn Pizza - Sweet corn pizza - ₹159
+Farmhouse Pizza - Mixed veg pizza - ₹199
+
+------------------------------------------------
+
+MOMOS
+
+Veg Momos - Steamed veg momos - ₹80
+Paneer Momos - Paneer filled momos - ₹100
+Fried Momos - Crispy fried momos - ₹90
+Cheese Momos - Cheese filled momos - ₹120
+Tandoori Momos - Spicy tandoori momos - ₹130
+
+------------------------------------------------
+
+MAGGIE
+
+Plain Maggie - Simple maggie - ₹40
+Veg Maggie - Veg loaded maggie - ₹60
+Cheese Maggie - Cheese maggie - ₹70
+Butter Maggie - Butter maggie - ₹60
+Masala Maggie - Spicy maggie - ₹50
+
+------------------------------------------------
+
+COLD COFFEE
+
+Cold Coffee - Classic cold coffee - ₹80
+Cold Coffee with Ice Cream - ₹120
+Chocolate Cold Coffee - ₹100
+Oreo Cold Coffee - ₹110
+Caramel Cold Coffee - ₹120
+
+------------------------------------------------
+
+Design:
+- Clean bakery style
+- Mobile friendly
+- Card layout
+- Category sections
+
+Add WhatsApp Order Button for each item.
+Make UI simple and modern.
