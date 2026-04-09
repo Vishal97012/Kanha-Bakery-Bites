@@ -1,6 +1,24 @@
 import { Phone, MapPin, Clock, Instagram, Facebook } from "lucide-react";
 import { WHATSAPP_NUMBER } from "@/lib/cart";
-import { DELIVERY_AREAS as AREAS } from "@/lib/data";
+
+const INSTAGRAM_URL = "https://www.instagram.com/kanhahomebakery?igsh=MW50b2M3NjEwY3E4ag==";
+
+const DELIVERY_AREAS = [
+  "Police Line",
+  "M.P. Bagh",
+  "Sadar Bazar",
+  "Raja Bazar",
+  "Arrah City",
+  "Koilwar",
+  "Jagdishpur",
+  "Bihia",
+  "Shahpur",
+  "Piro",
+  "Sandesh",
+  "Tarari",
+  "Ara Junction",
+  "Station Road",
+];
 
 export default function Contact() {
   return (
@@ -15,6 +33,7 @@ export default function Contact() {
         <div className="text-4xl mb-2">🎂</div>
         <div className="font-bold text-primary text-lg">Kanha Home Bakery</div>
         <div className="text-muted-foreground text-sm">Fresh Homemade Cakes, Baked with Love</div>
+        <div className="text-muted-foreground text-xs mt-1">Arrah, Bihar</div>
       </div>
 
       {/* WhatsApp - primary CTA */}
@@ -59,10 +78,10 @@ export default function Contact() {
           <div className="font-bold text-sm text-foreground">Address</div>
           <div className="text-foreground text-sm mt-0.5 leading-relaxed">
             Kanha Home Bakery<br />
-            Near Gandhi Nagar Chowk,<br />
-            Civil Lines, UP
+            Police Line, M.P. Bagh,<br />
+            Arrah, Bihar
           </div>
-          <div className="text-xs text-muted-foreground mt-1">Call for exact location</div>
+          <div className="text-xs text-muted-foreground mt-1">Call for exact location pin</div>
         </div>
       </div>
 
@@ -86,7 +105,7 @@ export default function Contact() {
         <h2 className="font-bold text-lg text-foreground mb-3">Delivery Areas</h2>
         <div className="bg-white rounded-2xl border border-border shadow-sm p-4">
           <div className="grid grid-cols-2 gap-2">
-            {AREAS.map((area) => (
+            {DELIVERY_AREAS.map((area) => (
               <div
                 key={area}
                 className="flex items-center gap-2 text-sm text-foreground"
@@ -107,7 +126,7 @@ export default function Contact() {
         <h2 className="font-bold text-lg text-foreground mb-3">Follow Us</h2>
         <div className="grid grid-cols-2 gap-3">
           <a
-            href="https://instagram.com"
+            href={INSTAGRAM_URL}
             target="_blank"
             rel="noopener noreferrer"
             className="bg-gradient-to-br from-pink-500 to-purple-600 text-white rounded-2xl p-4 flex items-center gap-3 active:scale-95 transition-transform"

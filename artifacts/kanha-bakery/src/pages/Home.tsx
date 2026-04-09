@@ -1,11 +1,56 @@
 import { Link } from "wouter";
 import { Star, MapPin, Truck, Clock, ChevronRight } from "lucide-react";
-import { CAKES, REVIEWS } from "@/lib/data";
+import { REVIEWS } from "@/lib/data";
 import { WHATSAPP_NUMBER } from "@/lib/cart";
 
-export default function Home() {
-  const featured = CAKES.filter((c) => c.isBestSeller).slice(0, 3);
+import cakeChocolateTruffle from "@assets/IMG-20260326-WA0090_1775751113041.jpg";
+import cakeBlackForest from "@assets/IMG-20260326-WA0078_1775751112788.jpg";
+import cakeButterscotch from "@assets/IMG-20260401-WA0006_1775751112757.jpg";
+import cakeRedVelvet from "@assets/IMG-20260326-WA0086_1775751113012.jpg";
+import cakePrincess from "@assets/IMG-20260331-WA0000_1775751113066.jpg";
+import cakeMickey from "@assets/IMG-20260331-WA0003_1775751113096.jpg";
 
+const INSTAGRAM_URL = "https://www.instagram.com/kanhahomebakery?igsh=MW50b2M3NjEwY3E4ag==";
+
+const FEATURED = [
+  {
+    id: "c1",
+    name: "Chocolate Truffle Cake",
+    description: "Rich dark chocolate cake with silky truffle ganache — a choco lover's dream",
+    price: 750,
+    image: cakeChocolateTruffle,
+    badge: "Best Seller",
+    rating: 4.9,
+    reviews: 124,
+  },
+  {
+    id: "c2",
+    name: "Black Forest Cake",
+    description: "Classic chocolate cherry cake with whipped cream layers",
+    price: 650,
+    image: cakeBlackForest,
+    badge: "Popular",
+    rating: 4.8,
+    reviews: 98,
+  },
+  {
+    id: "c3",
+    name: "Butterscotch Cake",
+    description: "Crunchy butterscotch cake with caramel cream — irresistible!",
+    price: 720,
+    image: cakeButterscotch,
+    rating: 4.7,
+    reviews: 87,
+  },
+];
+
+const GALLERY = [
+  { img: cakeRedVelvet, label: "Red Velvet" },
+  { img: cakePrincess, label: "Theme Cakes" },
+  { img: cakeMickey, label: "Kids Cakes" },
+];
+
+export default function Home() {
   return (
     <div className="max-w-lg mx-auto pb-8">
       {/* Offer Banner */}
@@ -23,7 +68,7 @@ export default function Home() {
           Fresh Homemade Cakes — Baked with Love
         </p>
         <p className="text-sm text-muted-foreground mt-1">
-          Custom cakes for every occasion
+          Arrah, Bihar · Custom cakes for every occasion
         </p>
 
         <div className="flex gap-3 mt-6 justify-center">
@@ -69,19 +114,23 @@ export default function Home() {
         </div>
 
         <div className="flex flex-col gap-4">
-          {featured.map((cake) => (
+          {FEATURED.map((cake) => (
             <Link key={cake.id} href="/menu">
               <div className="cake-card bg-white rounded-2xl border border-border shadow-sm overflow-hidden flex cursor-pointer active:scale-[0.98] transition-transform">
-                <div className="w-28 h-28 bg-gradient-to-br from-pink-100 to-amber-50 flex items-center justify-center text-5xl flex-shrink-0">
-                  {cake.emoji}
+                <div className="w-28 h-28 flex-shrink-0 overflow-hidden bg-pink-50">
+                  <img
+                    src={cake.image}
+                    alt={cake.name}
+                    className="w-full h-full object-cover"
+                  />
                 </div>
                 <div className="flex-1 p-3 flex flex-col justify-between">
                   <div>
-                    <div className="flex items-center gap-2">
-                      <span className="font-bold text-base text-foreground">{cake.name}</span>
-                      {cake.isBestSeller && (
+                    <div className="flex items-center gap-2 flex-wrap">
+                      <span className="font-bold text-sm text-foreground">{cake.name}</span>
+                      {cake.badge && (
                         <span className="bg-amber-100 text-amber-700 text-[10px] font-bold px-2 py-0.5 rounded-full">
-                          ⭐ Best Seller
+                          ⭐ {cake.badge}
                         </span>
                       )}
                     </div>
@@ -95,12 +144,41 @@ export default function Home() {
                     </div>
                   </div>
                   <div className="flex items-center justify-between mt-2">
-                    <span className="text-primary font-bold text-base">₹{cake.prices["500g"]}</span>
-                    <span className="text-xs text-muted-foreground">Starting from</span>
+                    <span className="text-primary font-bold text-base">₹{cake.price}</span>
+                    <span className="text-xs text-muted-foreground">per kg</span>
                   </div>
                 </div>
               </div>
             </Link>
+          ))}
+        </div>
+      </div>
+
+      {/* Photo Gallery */}
+      <div className="px-4 mt-8">
+        <div className="flex items-center justify-between mb-4">
+          <h2 className="text-xl font-bold text-foreground">Our Creations</h2>
+          <a
+            href={INSTAGRAM_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-pink-500 text-sm font-semibold flex items-center gap-0.5"
+          >
+            See more <ChevronRight size={16} />
+          </a>
+        </div>
+        <div className="grid grid-cols-3 gap-2">
+          {GALLERY.map((g) => (
+            <div key={g.label} className="relative rounded-2xl overflow-hidden aspect-square">
+              <img
+                src={g.img}
+                alt={g.label}
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent px-2 py-1.5">
+                <div className="text-white text-[10px] font-bold">{g.label}</div>
+              </div>
+            </div>
           ))}
         </div>
       </div>
@@ -113,7 +191,7 @@ export default function Home() {
             <Truck className="text-primary mt-0.5 flex-shrink-0" size={20} />
             <div>
               <div className="font-semibold text-sm text-foreground">Home Delivery Available</div>
-              <div className="text-xs text-muted-foreground mt-0.5">We deliver fresh cakes to your doorstep</div>
+              <div className="text-xs text-muted-foreground mt-0.5">We deliver fresh cakes to your doorstep in Arrah</div>
             </div>
           </div>
           <div className="flex items-start gap-3">
@@ -128,7 +206,7 @@ export default function Home() {
             <div>
               <div className="font-semibold text-sm text-foreground">Delivery Areas</div>
               <div className="text-xs text-muted-foreground mt-0.5">
-                Sector 1-20, Civil Lines, Gandhi Nagar & nearby areas
+                Police Line, M.P. Bagh, Sadar Bazar, Raja Bazar, Koilwar & nearby areas in Arrah, Bihar
               </div>
             </div>
           </div>
@@ -184,7 +262,7 @@ export default function Home() {
       {/* Social Links */}
       <div className="px-4 mt-6 flex gap-3">
         <a
-          href="https://instagram.com"
+          href={INSTAGRAM_URL}
           target="_blank"
           rel="noopener noreferrer"
           className="flex-1 bg-gradient-to-r from-pink-500 to-purple-500 text-white rounded-2xl py-3.5 text-center font-semibold flex items-center justify-center gap-2 active:scale-95 transition-transform"

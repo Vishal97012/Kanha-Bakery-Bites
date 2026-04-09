@@ -1,5 +1,7 @@
 import { WHATSAPP_NUMBER } from "@/lib/cart";
 
+const INSTAGRAM_URL = "https://www.instagram.com/kanhahomebakery?igsh=MW50b2M3NjEwY3E4ag==";
+
 export default function Footer() {
   return (
     <footer className="bg-white border-t border-border mt-12 py-8 px-4">
@@ -7,10 +9,11 @@ export default function Footer() {
         <div className="text-3xl mb-2">🎂</div>
         <div className="font-bold text-primary text-lg">Kanha Home Bakery</div>
         <div className="text-muted-foreground text-sm mt-1">Fresh Homemade Cakes</div>
+        <div className="text-muted-foreground text-xs mt-0.5">Police Line, M.P. Bagh, Arrah, Bihar</div>
 
         <div className="flex justify-center gap-6 mt-4">
           <a
-            href="https://instagram.com"
+            href={INSTAGRAM_URL}
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center gap-1.5 text-sm font-medium text-pink-500 hover:text-pink-600 transition-colors"
@@ -36,7 +39,7 @@ export default function Footer() {
         </div>
 
         <div className="mt-4 text-xs text-muted-foreground">
-          © 2024 Kanha Home Bakery. Made with ❤️ and lots of sugar.
+          © 2025 Kanha Home Bakery. Made with ❤️ and lots of sugar.
         </div>
       </div>
     </footer>
