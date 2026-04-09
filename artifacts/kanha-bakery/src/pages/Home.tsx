@@ -1,60 +1,48 @@
 import { Link } from "wouter";
-import { Star, MapPin, Truck, Clock, ChevronRight } from "lucide-react";
+import { Star, MapPin, Phone, Instagram, ChevronRight } from "lucide-react";
 import { REVIEWS } from "@/lib/data";
 import { WHATSAPP_NUMBER } from "@/lib/cart";
 
 import cakeChocolateTruffle from "@assets/IMG-20260326-WA0090_1775751113041.jpg";
 import cakeBlackForest from "@assets/IMG-20260326-WA0078_1775751112788.jpg";
-import cakePineapple from "@assets/IMG-20260401-WA0005_1775751112723.jpg";
-
-import cakeLovePink from "@assets/IMG-20260406-WA0146(1)_1775753795687.jpg";
+import cakeOreo from "@assets/IMG-20260326-WA0081_1775751112893.jpg";
+import cakeStrawberry from "@assets/IMG-20260326-WA0077(1)_1775751112809.jpg";
+import cakePinkLove from "@assets/IMG-20260406-WA0146(1)_1775753795687.jpg";
 import cakeLoveCouple from "@assets/IMG-20260409-WA0111_1775753795716.jpg";
 import cakeHeartBirthday from "@assets/IMG-20260409-WA0112_1775753795766.jpg";
 import cakeBlueBirthday from "@assets/IMG-20260409-WA0108_1775753795837.jpg";
 import cakeWife from "@assets/IMG-20260409-WA0113_1775753795785.jpg";
 import cakeCoupleHug from "@assets/IMG-20260409-WA0109_1775753795810.jpg";
+import cakeRedVelvet from "@assets/IMG-20260326-WA0086_1775751113012.jpg";
+import cakeButterscotch from "@assets/IMG-20260401-WA0006_1775751112757.jpg";
 
 const INSTAGRAM_URL = "https://www.instagram.com/kanhahomebakery?igsh=MW50b2M3NjEwY3E4ag==";
 
+const HERO_CAKES = [cakeChocolateTruffle, cakePinkLove, cakeHeartBirthday, cakeBlueBirthday];
+
 const FEATURED = [
-  {
-    id: "c1",
-    name: "Chocolate Truffle Cake",
-    description: "Rich dark chocolate cake with silky truffle ganache — a choco lover's dream",
-    price: 499,
-    image: cakeChocolateTruffle,
-    badge: "Best Seller",
-    rating: 4.9,
-    reviews: 124,
-  },
-  {
-    id: "c2",
-    name: "Black Forest Cake",
-    description: "Classic chocolate cherry cake with whipped cream layers",
-    price: 650,
-    image: cakeBlackForest,
-    badge: "Popular",
-    rating: 4.8,
-    reviews: 98,
-  },
-  {
-    id: "c5",
-    name: "Pineapple Cake",
-    description: "Fresh pineapple cake with tropical fruit cream — perfect for celebrations",
-    price: 1500,
-    image: cakePineapple,
-    rating: 4.6,
-    reviews: 65,
-  },
+  { name: "Chocolate Truffle", price: 499, image: cakeChocolateTruffle, badge: "Best Seller", rating: 4.9 },
+  { name: "Black Forest", price: 650, image: cakeBlackForest, badge: "Popular", rating: 4.8 },
+  { name: "Oreo Cake", price: 499, image: cakeOreo, badge: "Trending", rating: 4.7 },
+  { name: "Strawberry Cake", price: 1000, image: cakeStrawberry, rating: 4.7 },
+  { name: "Butterscotch Cake", price: 720, image: cakeButterscotch, rating: 4.8 },
+  { name: "Red Velvet Cake", price: 850, image: cakeRedVelvet, badge: "New", rating: 4.9 },
 ];
 
 const GALLERY = [
-  { img: cakeLovePink, label: "Love Cake" },
-  { img: cakeLoveCouple, label: "Couple Cake" },
+  { img: cakePinkLove, label: "Love Cake" },
+  { img: cakeLoveCouple, label: "I Love You" },
   { img: cakeHeartBirthday, label: "Heart Cake" },
-  { img: cakeBlueBirthday, label: "Birthday Cake" },
-  { img: cakeWife, label: "Special Cake" },
-  { img: cakeCoupleHug, label: "Theme Cake" },
+  { img: cakeBlueBirthday, label: "Birthday" },
+  { img: cakeWife, label: "Wife Special" },
+  { img: cakeCoupleHug, label: "Couple Cake" },
+];
+
+const CATEGORIES = [
+  { label: "Cakes", emoji: "🎂", desc: "14+ varieties", href: "/menu", color: "from-pink-400 to-rose-500" },
+  { label: "Love Cakes", emoji: "❤️", desc: "Anniversary & couple", href: "/menu", color: "from-red-400 to-pink-500" },
+  { label: "Birthday", emoji: "🎉", desc: "Theme & custom", href: "/menu", color: "from-purple-400 to-violet-500" },
+  { label: "Custom Cake", emoji: "✨", desc: "Design your own", href: "/custom-cake", color: "from-amber-400 to-orange-500" },
 ];
 
 export default function Home() {
@@ -62,100 +50,112 @@ export default function Home() {
     <div className="max-w-lg mx-auto pb-8">
       {/* Offer Banner */}
       <div className="offer-banner text-white text-center py-2.5 px-4 text-sm font-medium">
-        🎉 Free delivery on orders above ₹799! Use code: <span className="font-bold underline">KANHA10</span> for 10% off
+        🎉 Free delivery on orders above ₹799! Code: <span className="font-bold underline">KANHA10</span> for 10% off
       </div>
 
       {/* Hero */}
-      <div className="px-4 pt-8 pb-6 text-center bg-gradient-to-b from-pink-50 to-background">
-        <div className="text-6xl mb-3 float-anim inline-block">🎂</div>
-        <h1 className="text-3xl font-bold text-primary leading-tight">
-          Kanha Home Bakery
-        </h1>
-        <p className="text-muted-foreground mt-2 text-base">
-          Fresh Homemade Cakes — Baked with Love
-        </p>
-        <p className="text-sm text-muted-foreground mt-1">
-          Arrah, Bihar · Custom cakes for every occasion
-        </p>
+      <div className="relative overflow-hidden bg-gradient-to-br from-pink-50 via-rose-50 to-amber-50 pt-8 pb-6 px-4 text-center">
+        <div className="relative z-10">
+          <div className="inline-flex items-center gap-2 bg-white/70 backdrop-blur-sm border border-pink-200 rounded-full px-4 py-1.5 mb-4">
+            <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
+            <span className="text-xs font-semibold text-foreground">Open Now · Arrah, Bihar</span>
+          </div>
+          <h1 className="text-3xl font-bold text-primary leading-tight">
+            Kanha Home Bakery
+          </h1>
+          <p className="text-muted-foreground mt-2 text-sm">
+            ✨ Fresh Homemade Cakes · Baked with Pure Love ✨
+          </p>
 
-        <div className="flex gap-3 mt-6 justify-center">
-          <Link href="/menu">
-            <button className="bg-primary text-white px-6 py-3.5 rounded-2xl font-bold text-base shadow-md active:scale-95 transition-transform">
-              Order Now
-            </button>
-          </Link>
-          <Link href="/custom-cake">
-            <button className="border-2 border-primary text-primary px-6 py-3.5 rounded-2xl font-bold text-base active:scale-95 transition-transform bg-white">
-              Custom Cake
-            </button>
-          </Link>
+          <div className="flex gap-3 mt-5 justify-center">
+            <Link href="/menu">
+              <button className="bg-primary text-white px-7 py-3 rounded-2xl font-bold text-sm shadow-lg active:scale-95 transition-transform">
+                🛒 Order Now
+              </button>
+            </Link>
+            <a href={`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent("Hello! I want to order a cake.")}`} target="_blank" rel="noopener noreferrer">
+              <button className="bg-[#25D366] text-white px-7 py-3 rounded-2xl font-bold text-sm shadow-lg active:scale-95 transition-transform">
+                💬 WhatsApp
+              </button>
+            </a>
+          </div>
+        </div>
+
+        {/* Floating cake strip */}
+        <div className="flex gap-2 mt-5 overflow-hidden rounded-2xl h-28">
+          {HERO_CAKES.map((img, i) => (
+            <div key={i} className="flex-1 overflow-hidden rounded-xl">
+              <img src={img} alt="cake" className="w-full h-full object-cover" />
+            </div>
+          ))}
         </div>
       </div>
 
       {/* Trust badges */}
-      <div className="grid grid-cols-3 gap-3 px-4 mt-2">
+      <div className="grid grid-cols-4 gap-2 px-4 mt-4">
         {[
           { icon: "🏠", label: "Home Made" },
           { icon: "✨", label: "Fresh Daily" },
           { icon: "💯", label: "Pure Veg" },
+          { icon: "🚴", label: "Delivery" },
         ].map((b) => (
-          <div
-            key={b.label}
-            className="bg-white border border-border rounded-2xl py-3 flex flex-col items-center gap-1 shadow-sm"
-          >
-            <span className="text-2xl">{b.icon}</span>
-            <span className="text-xs font-semibold text-foreground">{b.label}</span>
+          <div key={b.label} className="bg-white border border-border rounded-xl py-2.5 flex flex-col items-center gap-1 shadow-sm">
+            <span className="text-xl">{b.icon}</span>
+            <span className="text-[10px] font-semibold text-foreground text-center leading-tight">{b.label}</span>
           </div>
         ))}
+      </div>
+
+      {/* Categories */}
+      <div className="px-4 mt-7">
+        <h2 className="text-lg font-bold text-foreground mb-3">Shop by Category</h2>
+        <div className="grid grid-cols-2 gap-3">
+          {CATEGORIES.map((cat) => (
+            <Link key={cat.label} href={cat.href}>
+              <div className={`bg-gradient-to-br ${cat.color} text-white rounded-2xl p-4 active:scale-95 transition-transform cursor-pointer shadow-md`}>
+                <div className="text-3xl mb-1">{cat.emoji}</div>
+                <div className="font-bold text-sm">{cat.label}</div>
+                <div className="text-xs opacity-80 mt-0.5">{cat.desc}</div>
+              </div>
+            </Link>
+          ))}
+        </div>
       </div>
 
       {/* Featured Cakes */}
       <div className="px-4 mt-8">
         <div className="flex items-center justify-between mb-4">
-          <h2 className="text-xl font-bold text-foreground">Featured Cakes</h2>
+          <h2 className="text-lg font-bold text-foreground">Featured Cakes</h2>
           <Link href="/menu">
             <span className="text-primary text-sm font-semibold flex items-center gap-0.5 cursor-pointer">
-              View All <ChevronRight size={16} />
+              View All <ChevronRight size={15} />
             </span>
           </Link>
         </div>
 
-        <div className="flex flex-col gap-4">
+        <div className="grid grid-cols-2 gap-3">
           {FEATURED.map((cake) => (
-            <Link key={cake.id} href="/menu">
-              <div className="cake-card bg-white rounded-2xl border border-border shadow-sm overflow-hidden cursor-pointer active:scale-[0.98] transition-transform">
-                <div className="relative h-40 overflow-hidden bg-pink-50">
-                  <img
-                    src={cake.image}
-                    alt={cake.name}
-                    className="w-full h-full object-cover"
-                  />
+            <Link key={cake.name} href="/menu">
+              <div className="bg-white rounded-2xl border border-border shadow-sm overflow-hidden cake-card cursor-pointer active:scale-[0.97] transition-transform">
+                <div className="relative h-36 overflow-hidden bg-pink-50">
+                  <img src={cake.image} alt={cake.name} className="w-full h-full object-cover" />
                   {cake.badge && (
-                    <div className="absolute top-2 left-2">
-                      <span className="bg-amber-400 text-amber-900 text-[10px] font-bold px-2 py-1 rounded-full shadow">
+                    <div className="absolute top-1.5 left-1.5">
+                      <span className="bg-amber-400 text-amber-900 text-[9px] font-bold px-1.5 py-0.5 rounded-full">
                         ⭐ {cake.badge}
                       </span>
                     </div>
                   )}
-                  <div className="absolute bottom-2 right-2 bg-white/90 backdrop-blur-sm rounded-xl px-3 py-1 shadow">
-                    <span className="text-primary font-bold text-base">₹{cake.price}</span>
+                  <div className="absolute bottom-1.5 right-1.5 bg-white/90 rounded-lg px-2 py-0.5 shadow">
+                    <span className="text-primary font-bold text-sm">₹{cake.price}</span>
                   </div>
                 </div>
-                <div className="p-3">
-                  <div className="flex items-center justify-between">
-                    <span className="font-bold text-sm text-foreground">{cake.name}</span>
-                    <span className="text-xs text-muted-foreground bg-pink-50 px-2 py-0.5 rounded-full">1kg</span>
-                  </div>
-                  <p className="text-xs text-muted-foreground mt-1 line-clamp-1">
-                    {cake.description}
-                  </p>
-                  <div className="flex items-center justify-between mt-2">
-                    <div className="flex items-center gap-1">
-                      <Star size={12} className="fill-amber-400 text-amber-400" />
-                      <span className="text-xs font-semibold text-foreground">{cake.rating}</span>
-                      <span className="text-xs text-muted-foreground">({cake.reviews} reviews)</span>
-                    </div>
-                    <span className="text-primary font-bold text-sm">₹{cake.price} / 1kg</span>
+                <div className="p-2.5">
+                  <div className="font-bold text-xs text-foreground leading-snug">{cake.name}</div>
+                  <div className="flex items-center gap-1 mt-1">
+                    <Star size={10} className="fill-amber-400 text-amber-400" />
+                    <span className="text-[10px] font-medium text-foreground">{cake.rating}</span>
+                    <span className="text-[10px] text-muted-foreground">· 1kg</span>
                   </div>
                 </div>
               </div>
@@ -164,129 +164,80 @@ export default function Home() {
         </div>
       </div>
 
-      {/* Photo Gallery */}
+      {/* Gallery */}
       <div className="px-4 mt-8">
-        <div className="flex items-center justify-between mb-4">
-          <h2 className="text-xl font-bold text-foreground">Our Creations</h2>
-          <a
-            href={INSTAGRAM_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-pink-500 text-sm font-semibold flex items-center gap-0.5"
-          >
-            See more <ChevronRight size={16} />
+        <div className="flex items-center justify-between mb-3">
+          <h2 className="text-lg font-bold text-foreground">Our Creations</h2>
+          <a href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer"
+            className="text-pink-500 text-sm font-semibold flex items-center gap-0.5">
+            Instagram <ChevronRight size={15} />
           </a>
         </div>
         <div className="grid grid-cols-3 gap-2">
           {GALLERY.map((g) => (
             <div key={g.label} className="relative rounded-2xl overflow-hidden aspect-square">
-              <img
-                src={g.img}
-                alt={g.label}
-                className="w-full h-full object-cover"
-              />
-              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent px-2 py-1.5">
-                <div className="text-white text-[10px] font-bold">{g.label}</div>
+              <img src={g.img} alt={g.label} className="w-full h-full object-cover" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
+              <div className="absolute bottom-1.5 left-2 right-1">
+                <div className="text-white text-[10px] font-bold truncate">{g.label}</div>
               </div>
             </div>
           ))}
         </div>
       </div>
 
-      {/* Delivery Info */}
+      {/* Reviews */}
       <div className="px-4 mt-8">
-        <h2 className="text-xl font-bold text-foreground mb-4">Delivery Info</h2>
-        <div className="bg-white rounded-2xl border border-border shadow-sm p-4 flex flex-col gap-3">
-          <div className="flex items-start gap-3">
-            <Truck className="text-primary mt-0.5 flex-shrink-0" size={20} />
-            <div>
-              <div className="font-semibold text-sm text-foreground">Home Delivery Available</div>
-              <div className="text-xs text-muted-foreground mt-0.5">We deliver fresh cakes to your doorstep in Arrah</div>
-            </div>
-          </div>
-          <div className="flex items-start gap-3">
-            <Clock className="text-primary mt-0.5 flex-shrink-0" size={20} />
-            <div>
-              <div className="font-semibold text-sm text-foreground">Order 1 Day in Advance</div>
-              <div className="text-xs text-muted-foreground mt-0.5">Custom cakes need 24-48 hours notice</div>
-            </div>
-          </div>
-          <div className="flex items-start gap-3">
-            <MapPin className="text-primary mt-0.5 flex-shrink-0" size={20} />
-            <div>
-              <div className="font-semibold text-sm text-foreground">Delivery Areas</div>
-              <div className="text-xs text-muted-foreground mt-0.5">
-                Police Line, M.P. Bagh, Sadar Bazar, Raja Bazar, Koilwar & nearby areas in Arrah, Bihar
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Customer Reviews */}
-      <div className="px-4 mt-8">
-        <h2 className="text-xl font-bold text-foreground mb-4">Customer Reviews</h2>
+        <h2 className="text-lg font-bold text-foreground mb-3">Customer Reviews</h2>
         <div className="flex flex-col gap-3">
           {REVIEWS.slice(0, 3).map((r, i) => (
-            <div
-              key={i}
-              className="bg-white rounded-2xl border border-border shadow-sm p-4"
-            >
+            <div key={i} className="bg-white rounded-2xl border border-border shadow-sm p-4">
               <div className="flex items-center gap-3 mb-2">
-                <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-xl">
+                <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-xl flex-shrink-0">
                   {r.emoji}
                 </div>
-                <div>
+                <div className="flex-1 min-w-0">
                   <div className="font-semibold text-sm text-foreground">{r.name}</div>
-                  <div className="flex items-center gap-0.5">
+                  <div className="flex items-center gap-0.5 mt-0.5">
                     {Array.from({ length: r.rating }).map((_, j) => (
-                      <Star key={j} size={12} className="fill-amber-400 text-amber-400" />
+                      <Star key={j} size={11} className="fill-amber-400 text-amber-400" />
                     ))}
                   </div>
                 </div>
-                <span className="ml-auto text-xs text-muted-foreground">{r.date}</span>
+                <span className="text-xs text-muted-foreground flex-shrink-0">{r.date}</span>
               </div>
-              <p className="text-sm text-foreground/80">{r.text}</p>
+              <p className="text-xs text-foreground/80 leading-relaxed">{r.text}</p>
             </div>
           ))}
         </div>
       </div>
 
-      {/* WhatsApp CTA */}
-      <div className="px-4 mt-8">
-        <a
-          href={`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent("Hello Kanha Home Bakery! I would like to order a cake.")}`}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <div className="bg-[#25D366] text-white rounded-2xl p-5 text-center shadow-md active:scale-95 transition-transform">
-            <div className="text-2xl mb-1">💬</div>
-            <div className="font-bold text-lg">Order via WhatsApp</div>
-            <div className="text-sm opacity-90 mt-0.5">
-              Chat with us directly at +91 70502 56262
-            </div>
-          </div>
+      {/* Contact strip */}
+      <div className="px-4 mt-8 flex gap-3">
+        <a href={`https://wa.me/${WHATSAPP_NUMBER}`} target="_blank" rel="noopener noreferrer"
+          className="flex-1 bg-[#25D366] text-white rounded-2xl py-3.5 flex items-center justify-center gap-2 font-bold text-sm shadow active:scale-95 transition-transform">
+          💬 WhatsApp
+        </a>
+        <a href="tel:+917050256262"
+          className="flex-1 bg-primary text-white rounded-2xl py-3.5 flex items-center justify-center gap-2 font-bold text-sm shadow active:scale-95 transition-transform">
+          <Phone size={16} /> Call Us
+        </a>
+        <a href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer"
+          className="flex-1 bg-gradient-to-r from-pink-500 to-purple-500 text-white rounded-2xl py-3.5 flex items-center justify-center gap-2 font-bold text-sm shadow active:scale-95 transition-transform">
+          <Instagram size={16} />
         </a>
       </div>
 
-      {/* Social Links */}
-      <div className="px-4 mt-6 flex gap-3">
-        <a
-          href={INSTAGRAM_URL}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex-1 bg-gradient-to-r from-pink-500 to-purple-500 text-white rounded-2xl py-3.5 text-center font-semibold flex items-center justify-center gap-2 active:scale-95 transition-transform"
-        >
-          <span>📸</span> Instagram
-        </a>
-        <a
-          href="https://facebook.com"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex-1 bg-blue-600 text-white rounded-2xl py-3.5 text-center font-semibold flex items-center justify-center gap-2 active:scale-95 transition-transform"
-        >
-          <span>📘</span> Facebook
-        </a>
+      {/* Address */}
+      <div className="mx-4 mt-4 bg-white border border-border rounded-2xl p-4 flex items-start gap-3 shadow-sm">
+        <MapPin className="text-primary mt-0.5 flex-shrink-0" size={18} />
+        <div>
+          <div className="font-bold text-sm text-foreground">Find Us</div>
+          <div className="text-xs text-muted-foreground mt-0.5 leading-relaxed">
+            Police Line, M.P. Bagh, Arrah, Bihar
+          </div>
+          <div className="text-xs text-primary font-medium mt-1">+91 70502 56262</div>
+        </div>
       </div>
     </div>
   );

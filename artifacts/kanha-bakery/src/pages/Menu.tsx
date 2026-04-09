@@ -78,9 +78,6 @@ const CAKES: MenuItem[] = [
   { id: "f03", name: "Blueberry Cake", description: "Blueberry cake with berry cream topping", price: 1000, image: cakeBlueberry, sub: "fruit" },
   { id: "f04", name: "Mango Tango Cake", description: "Tropical mango layers with fresh mango pulp", price: 900, imageUrl: "https://images.unsplash.com/photo-1621303837174-89787a7d4729?w=400&h=400&fit=crop", image: null, sub: "fruit" },
   { id: "f05", name: "Mixed Fruit Cake", description: "Loaded with seasonal fresh fruits on whipped cream", price: 850, imageUrl: "https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?w=400&h=400&fit=crop", image: null, sub: "fruit" },
-  { id: "f06", name: "Lemon Zest Cake", description: "Tangy lemon cake with zesty lemon buttercream", price: 700, imageUrl: "https://images.unsplash.com/photo-1535141192574-5d4897c12636?w=400&h=400&fit=crop", image: null, sub: "fruit" },
-  { id: "f07", name: "Orange Cream Cake", description: "Citrusy orange sponge with orange cream frosting", price: 750, imageUrl: "https://images.unsplash.com/photo-1568051243858-533a607809a5?w=400&h=400&fit=crop", image: null, sub: "fruit" },
-  { id: "f08", name: "Kiwi Delight Cake", description: "Light kiwi cake with fresh kiwi slices on top", price: 850, imageUrl: "https://images.unsplash.com/photo-1519915028121-7d3463d20b13?w=400&h=400&fit=crop", image: null, sub: "fruit" },
 
   // ── LOVE & ANNIVERSARY ───────────────────────────────────────────────────
   { id: "l01", name: "Pink Love Drip Cake", description: "Romantic pink drip cake with love topper & sprinkles", price: 1200, image: cakePinkLove, badge: "Trending", sub: "love" },
@@ -89,20 +86,13 @@ const CAKES: MenuItem[] = [
   { id: "l04", name: "I Love You Cake", description: "Cute 'I Love You' couple cake with heart decor", price: 1000, image: cakeILoveYou, sub: "love" },
   { id: "l05", name: "Couple Hug Cake", description: "Adorable couple hugging theme cake with hearts", price: 1200, image: cakeCoupleHug, sub: "love" },
   { id: "l06", name: "Wife Special Cake", description: "Surprise birthday cake for the best wife ever", price: 1500, image: cakeWifeBirthday, badge: "Special", sub: "love" },
-  { id: "l07", name: "Anniversary Rose Cake", description: "Elegant multi-layer rose decorated anniversary cake", price: 1200, imageUrl: "https://images.unsplash.com/photo-1565958011703-44f9829ba187?w=400&h=400&fit=crop", image: null, sub: "love" },
-  { id: "l08", name: "Valentine Heart Cake", description: "Deep red heart cake with romantic chocolate decor", price: 1100, imageUrl: "https://images.unsplash.com/photo-1488477181946-6428a0291777?w=400&h=400&fit=crop", image: null, sub: "love" },
 
   // ── BIRTHDAY ─────────────────────────────────────────────────────────────
   { id: "b01", name: "Blue Birthday Cake", description: "Stunning blue floral Happy Birthday cake with topper", price: 1500, image: cakeBlueBirthday, badge: "New", sub: "birthday" },
   { id: "b02", name: "Princess Theme Cake", description: "Royal princess tiara cake for little queens", price: 1200, image: cakePrincess, sub: "birthday" },
-  { id: "b03", name: "Rainbow Layer Cake", description: "Colorful rainbow layers — a magical birthday treat", price: 1200, imageUrl: "https://images.unsplash.com/photo-1571115177098-24ec42ed204d?w=400&h=400&fit=crop", image: null, sub: "birthday" },
   { id: "b04", name: "Number Birthday Cake", description: "Custom number cake for milestone birthdays", price: 1000, imageUrl: "https://images.unsplash.com/photo-1562777717-dc6984f65a63?w=400&h=400&fit=crop", image: null, sub: "birthday" },
-  { id: "b05", name: "Floral Birthday Cake", description: "Beautifully decorated cake with edible flowers", price: 1100, imageUrl: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=400&fit=crop", image: null, sub: "birthday" },
-  { id: "b06", name: "Pinata Smash Cake", description: "Surprise-filled pinata cake — smash it for candy!", price: 1500, imageUrl: "https://images.unsplash.com/photo-1559622214-f8a9850965bb?w=400&h=400&fit=crop", image: null, sub: "birthday" },
-  { id: "b07", name: "Mirror Glaze Cake", description: "Shiny galaxy mirror glaze for the wow factor", price: 1800, imageUrl: "https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?w=400&h=400&fit=crop", image: null, sub: "birthday" },
   { id: "b08", name: "Ombre Birthday Cake", description: "Gradient ombre frosting — from light to deep color", price: 1200, imageUrl: "https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400&h=400&fit=crop", image: null, sub: "birthday" },
   { id: "b09", name: "Chocolate Box Cake", description: "Chocolate cake topped with premium chocolate boxes", price: 1500, imageUrl: "https://images.unsplash.com/photo-1606890737304-57a1ca8a5b62?w=400&h=400&fit=crop", image: null, sub: "birthday" },
-  { id: "b10", name: "Golden Glitter Cake", description: "Glamorous gold-painted birthday cake with sparkle", price: 1600, imageUrl: "https://images.unsplash.com/photo-1546427660-eb346c344ba5?w=400&h=400&fit=crop", image: null, sub: "birthday" },
 
   // ── KIDS ─────────────────────────────────────────────────────────────────
   { id: "k01", name: "Mickey Mouse Cake", description: "Fun Mickey Mouse cartoon theme cake for kids", price: 1200, image: cakeMickey, sub: "kids" },
