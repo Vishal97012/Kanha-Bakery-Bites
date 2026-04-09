@@ -5,10 +5,14 @@ import { WHATSAPP_NUMBER } from "@/lib/cart";
 
 import cakeChocolateTruffle from "@assets/IMG-20260326-WA0090_1775751113041.jpg";
 import cakeBlackForest from "@assets/IMG-20260326-WA0078_1775751112788.jpg";
-import cakeButterscotch from "@assets/IMG-20260401-WA0006_1775751112757.jpg";
-import cakeRedVelvet from "@assets/IMG-20260326-WA0086_1775751113012.jpg";
-import cakePrincess from "@assets/IMG-20260331-WA0000_1775751113066.jpg";
-import cakeMickey from "@assets/IMG-20260331-WA0003_1775751113096.jpg";
+import cakePineapple from "@assets/IMG-20260401-WA0005_1775751112723.jpg";
+
+import cakeLovePink from "@assets/IMG-20260406-WA0146(1)_1775753795687.jpg";
+import cakeLoveCouple from "@assets/IMG-20260409-WA0111_1775753795716.jpg";
+import cakeHeartBirthday from "@assets/IMG-20260409-WA0112_1775753795766.jpg";
+import cakeBlueBirthday from "@assets/IMG-20260409-WA0108_1775753795837.jpg";
+import cakeWife from "@assets/IMG-20260409-WA0113_1775753795785.jpg";
+import cakeCoupleHug from "@assets/IMG-20260409-WA0109_1775753795810.jpg";
 
 const INSTAGRAM_URL = "https://www.instagram.com/kanhahomebakery?igsh=MW50b2M3NjEwY3E4ag==";
 
@@ -17,7 +21,7 @@ const FEATURED = [
     id: "c1",
     name: "Chocolate Truffle Cake",
     description: "Rich dark chocolate cake with silky truffle ganache — a choco lover's dream",
-    price: 750,
+    price: 499,
     image: cakeChocolateTruffle,
     badge: "Best Seller",
     rating: 4.9,
@@ -34,20 +38,23 @@ const FEATURED = [
     reviews: 98,
   },
   {
-    id: "c3",
-    name: "Butterscotch Cake",
-    description: "Crunchy butterscotch cake with caramel cream — irresistible!",
-    price: 720,
-    image: cakeButterscotch,
-    rating: 4.7,
-    reviews: 87,
+    id: "c5",
+    name: "Pineapple Cake",
+    description: "Fresh pineapple cake with tropical fruit cream — perfect for celebrations",
+    price: 1500,
+    image: cakePineapple,
+    rating: 4.6,
+    reviews: 65,
   },
 ];
 
 const GALLERY = [
-  { img: cakeRedVelvet, label: "Red Velvet" },
-  { img: cakePrincess, label: "Theme Cakes" },
-  { img: cakeMickey, label: "Kids Cakes" },
+  { img: cakeLovePink, label: "Love Cake" },
+  { img: cakeLoveCouple, label: "Couple Cake" },
+  { img: cakeHeartBirthday, label: "Heart Cake" },
+  { img: cakeBlueBirthday, label: "Birthday Cake" },
+  { img: cakeWife, label: "Special Cake" },
+  { img: cakeCoupleHug, label: "Theme Cake" },
 ];
 
 export default function Home() {
@@ -116,36 +123,39 @@ export default function Home() {
         <div className="flex flex-col gap-4">
           {FEATURED.map((cake) => (
             <Link key={cake.id} href="/menu">
-              <div className="cake-card bg-white rounded-2xl border border-border shadow-sm overflow-hidden flex cursor-pointer active:scale-[0.98] transition-transform">
-                <div className="w-28 h-28 flex-shrink-0 overflow-hidden bg-pink-50">
+              <div className="cake-card bg-white rounded-2xl border border-border shadow-sm overflow-hidden cursor-pointer active:scale-[0.98] transition-transform">
+                <div className="relative h-40 overflow-hidden bg-pink-50">
                   <img
                     src={cake.image}
                     alt={cake.name}
                     className="w-full h-full object-cover"
                   />
-                </div>
-                <div className="flex-1 p-3 flex flex-col justify-between">
-                  <div>
-                    <div className="flex items-center gap-2 flex-wrap">
-                      <span className="font-bold text-sm text-foreground">{cake.name}</span>
-                      {cake.badge && (
-                        <span className="bg-amber-100 text-amber-700 text-[10px] font-bold px-2 py-0.5 rounded-full">
-                          ⭐ {cake.badge}
-                        </span>
-                      )}
+                  {cake.badge && (
+                    <div className="absolute top-2 left-2">
+                      <span className="bg-amber-400 text-amber-900 text-[10px] font-bold px-2 py-1 rounded-full shadow">
+                        ⭐ {cake.badge}
+                      </span>
                     </div>
-                    <p className="text-xs text-muted-foreground mt-0.5 line-clamp-2">
-                      {cake.description}
-                    </p>
-                    <div className="flex items-center gap-1 mt-1">
+                  )}
+                  <div className="absolute bottom-2 right-2 bg-white/90 backdrop-blur-sm rounded-xl px-3 py-1 shadow">
+                    <span className="text-primary font-bold text-base">₹{cake.price}</span>
+                  </div>
+                </div>
+                <div className="p-3">
+                  <div className="flex items-center justify-between">
+                    <span className="font-bold text-sm text-foreground">{cake.name}</span>
+                    <span className="text-xs text-muted-foreground bg-pink-50 px-2 py-0.5 rounded-full">1kg</span>
+                  </div>
+                  <p className="text-xs text-muted-foreground mt-1 line-clamp-1">
+                    {cake.description}
+                  </p>
+                  <div className="flex items-center justify-between mt-2">
+                    <div className="flex items-center gap-1">
                       <Star size={12} className="fill-amber-400 text-amber-400" />
                       <span className="text-xs font-semibold text-foreground">{cake.rating}</span>
-                      <span className="text-xs text-muted-foreground">({cake.reviews})</span>
+                      <span className="text-xs text-muted-foreground">({cake.reviews} reviews)</span>
                     </div>
-                  </div>
-                  <div className="flex items-center justify-between mt-2">
-                    <span className="text-primary font-bold text-base">₹{cake.price}</span>
-                    <span className="text-xs text-muted-foreground">per kg</span>
+                    <span className="text-primary font-bold text-sm">₹{cake.price} / 1kg</span>
                   </div>
                 </div>
               </div>

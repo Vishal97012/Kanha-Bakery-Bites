@@ -39,15 +39,15 @@ const CATEGORIES: Category[] = [
     emoji: "🎂",
     color: "from-pink-100 to-rose-50",
     items: [
-      { id: "c1", name: "Chocolate Truffle Cake", description: "Rich dark chocolate cake with silky truffle ganache", price: 750, image: cakeChocolateTruffle, badge: "Best Seller", weight: "1kg" },
+      { id: "c1", name: "Chocolate Truffle Cake", description: "Rich dark chocolate cake with silky truffle ganache", price: 499, image: cakeChocolateTruffle, badge: "Best Seller", weight: "1kg" },
       { id: "c2", name: "Black Forest Cake", description: "Classic chocolate cherry cake with whipped cream", price: 650, image: cakeBlackForest, badge: "Popular", weight: "1kg" },
       { id: "c3", name: "Butterscotch Cake", description: "Crunchy butterscotch cake with caramel cream", price: 720, image: cakeButterscotch, weight: "1kg" },
       { id: "c4", name: "Red Velvet Cake", description: "Soft velvety cake with creamy cheese frosting", price: 850, image: cakeRedVelvet, badge: "New", weight: "1kg" },
-      { id: "c5", name: "Pineapple Cake", description: "Fresh pineapple cake with tropical fruit cream", price: 600, image: cakePineapple, weight: "1kg" },
-      { id: "c6", name: "Strawberry Cake", description: "Strawberry cream cake with fresh fruit layers", price: 650, image: cakeStrawberry, weight: "1kg" },
-      { id: "c7", name: "Blueberry Cake", description: "Blueberry flavored cake with berry cream topping", price: 780, image: cakeBlueberry, weight: "1kg" },
+      { id: "c5", name: "Pineapple Cake", description: "Fresh pineapple cake with tropical fruit cream", price: 1500, image: cakePineapple, weight: "1kg" },
+      { id: "c6", name: "Strawberry Cake", description: "Strawberry cream cake with fresh fruit layers", price: 1000, image: cakeStrawberry, weight: "1kg" },
+      { id: "c7", name: "Blueberry Cake", description: "Blueberry flavored cake with berry cream topping", price: 1000, image: cakeBlueberry, weight: "1kg" },
       { id: "c8", name: "Vanilla Cake", description: "Classic soft vanilla sponge with light whipped cream", price: 550, image: cakeVanilla, weight: "1kg" },
-      { id: "c9", name: "Oreo Cake", description: "Oreo chocolate cake with cookies and cream frosting", price: 720, image: cakeOreo, badge: "Trending", weight: "1kg" },
+      { id: "c9", name: "Oreo Cake", description: "Oreo chocolate cake with cookies and cream frosting", price: 499, image: cakeOreo, badge: "Trending", weight: "1kg" },
       { id: "c10", name: "KitKat Cake", description: "Chocolate KitKat cake with crispy wafer layers", price: 850, image: cakeKitKat, weight: "1kg" },
     ],
   },
@@ -61,46 +61,6 @@ const CATEGORIES: Category[] = [
       { id: "p2", name: "Cheese Pizza", description: "Extra cheese pizza with mozzarella overload", price: 169, image: "https://images.unsplash.com/photo-1571997478779-2adcbbe9ab2f?w=400&h=300&fit=crop", isImageUrl: true },
       { id: "p3", name: "Paneer Pizza", description: "Paneer tikka topping pizza with spicy sauce", price: 199, image: "https://images.unsplash.com/photo-1513104890138-7c749659a591?w=400&h=300&fit=crop", isImageUrl: true },
       { id: "p4", name: "Corn Pizza", description: "Sweet corn pizza with creamy white sauce", price: 159, image: "https://images.unsplash.com/photo-1594007654729-407eedc4be65?w=400&h=300&fit=crop", isImageUrl: true },
-      { id: "p5", name: "Farmhouse Pizza", description: "Mixed veg farmhouse pizza with herbed base", price: 199, image: "https://images.unsplash.com/photo-1534308983496-4fabb1a015ee?w=400&h=300&fit=crop", isImageUrl: true },
-    ],
-  },
-  {
-    key: "momos",
-    label: "Momos",
-    emoji: "🥟",
-    color: "from-green-100 to-emerald-50",
-    items: [
-      { id: "m1", name: "Veg Momos", description: "Steamed veg momos with spicy red chutney", price: 80, image: "https://images.unsplash.com/photo-1585032226651-759b368d7246?w=400&h=300&fit=crop", isImageUrl: true },
-      { id: "m2", name: "Paneer Momos", description: "Paneer filled momos with mint dipping sauce", price: 100, image: "https://images.unsplash.com/photo-1496116218417-1a781b1c416c?w=400&h=300&fit=crop", isImageUrl: true },
-      { id: "m3", name: "Fried Momos", description: "Crispy golden fried momos with tangy sauce", price: 90, image: "https://images.unsplash.com/photo-1530469912745-a215c6b256ea?w=400&h=300&fit=crop", isImageUrl: true },
-      { id: "m4", name: "Cheese Momos", description: "Cheese filled momos with creamy dip", price: 120, image: "https://images.unsplash.com/photo-1563245372-f21724e3856d?w=400&h=300&fit=crop", isImageUrl: true },
-      { id: "m5", name: "Tandoori Momos", description: "Spicy tandoori momos grilled to perfection", price: 130, image: "https://images.unsplash.com/photo-1574484284002-952d92456975?w=400&h=300&fit=crop", isImageUrl: true },
-    ],
-  },
-  {
-    key: "maggie",
-    label: "Maggie",
-    emoji: "🍜",
-    color: "from-yellow-100 to-amber-50",
-    items: [
-      { id: "mg1", name: "Plain Maggie", description: "Simple classic maggie with spice mix", price: 40, image: "https://images.unsplash.com/photo-1612929633738-8fe44f7ec841?w=400&h=300&fit=crop", isImageUrl: true },
-      { id: "mg2", name: "Veg Maggie", description: "Vegetable loaded maggie with fresh veggies", price: 60, image: "https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=400&h=300&fit=crop", isImageUrl: true },
-      { id: "mg3", name: "Cheese Maggie", description: "Cheesy maggie with gooey melted cheese", price: 70, image: "https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?w=400&h=300&fit=crop", isImageUrl: true },
-      { id: "mg4", name: "Butter Maggie", description: "Butter maggie with rich creamy buttery taste", price: 60, image: "https://images.unsplash.com/photo-1555126634-323283e090fa?w=400&h=300&fit=crop", isImageUrl: true },
-      { id: "mg5", name: "Masala Maggie", description: "Spicy masala maggie with Indian spices", price: 50, image: "https://images.unsplash.com/photo-1585325701165-e527d22e22be?w=400&h=300&fit=crop", isImageUrl: true },
-    ],
-  },
-  {
-    key: "coffee",
-    label: "Cold Coffee",
-    emoji: "☕",
-    color: "from-amber-100 to-yellow-50",
-    items: [
-      { id: "cc1", name: "Cold Coffee", description: "Classic chilled cold coffee, smooth and refreshing", price: 80, image: "https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=400&h=300&fit=crop", isImageUrl: true },
-      { id: "cc2", name: "Cold Coffee with Ice Cream", description: "Cold coffee topped with creamy vanilla ice cream", price: 120, image: "https://images.unsplash.com/photo-1572490122747-3968b75cc699?w=400&h=300&fit=crop", isImageUrl: true },
-      { id: "cc3", name: "Chocolate Cold Coffee", description: "Rich chocolate blended cold coffee", price: 100, image: "https://images.unsplash.com/photo-1578314675249-a6910f80cc4e?w=400&h=300&fit=crop", isImageUrl: true },
-      { id: "cc4", name: "Oreo Cold Coffee", description: "Oreo blended cold coffee with cookie crumble", price: 110, image: "https://images.unsplash.com/photo-1587049352846-4a222e784d38?w=400&h=300&fit=crop", isImageUrl: true },
-      { id: "cc5", name: "Caramel Cold Coffee", description: "Sweet caramel drizzled cold coffee delight", price: 120, image: "https://images.unsplash.com/photo-1609525313425-eb5d38f869c2?w=400&h=300&fit=crop", isImageUrl: true },
     ],
   },
 ];
@@ -128,7 +88,7 @@ function MenuItemCard({ item, categoryKey }: { item: MenuItem; categoryKey: stri
         price: item.price,
         weight: "1 piece",
         quantity: 1,
-        imageEmoji: CATEGORY_EMOJIS[categoryKey] || "🍽️",
+        imageEmoji: categoryKey === "pizza" ? "🍕" : "🍽️",
       });
     }
     window.dispatchEvent(new Event("cart-updated"));
@@ -138,8 +98,7 @@ function MenuItemCard({ item, categoryKey }: { item: MenuItem; categoryKey: stri
 
   return (
     <div className="bg-white rounded-2xl border border-border shadow-sm overflow-hidden cake-card">
-      {/* Image */}
-      <div className="relative h-44 overflow-hidden bg-gray-100">
+      <div className="relative h-48 overflow-hidden bg-gray-100">
         <img
           src={item.image}
           alt={item.name}
@@ -161,9 +120,13 @@ function MenuItemCard({ item, categoryKey }: { item: MenuItem; categoryKey: stri
         </div>
       </div>
 
-      {/* Info */}
       <div className="p-4">
         <h3 className="font-bold text-base text-foreground">{item.name}</h3>
+        {item.weight && (
+          <span className="text-xs text-muted-foreground bg-pink-50 px-2 py-0.5 rounded-full inline-block mt-1">
+            {item.weight}
+          </span>
+        )}
         <p className="text-xs text-muted-foreground mt-1 mb-3 line-clamp-2">{item.description}</p>
 
         <div className="flex gap-2">
@@ -190,14 +153,6 @@ function MenuItemCard({ item, categoryKey }: { item: MenuItem; categoryKey: stri
   );
 }
 
-const CATEGORY_EMOJIS: Record<string, string> = {
-  cakes: "🎂",
-  pizza: "🍕",
-  momos: "🥟",
-  maggie: "🍜",
-  coffee: "☕",
-};
-
 export default function Menu() {
   const [activeCategory, setActiveCategory] = useState("cakes");
 
@@ -205,13 +160,11 @@ export default function Menu() {
 
   return (
     <div className="max-w-lg mx-auto pb-8">
-      {/* Header */}
       <div className="px-4 pt-6 pb-4">
         <h1 className="text-2xl font-bold text-foreground">Our Menu</h1>
         <p className="text-muted-foreground text-sm mt-1">Fresh & delicious — made with love</p>
       </div>
 
-      {/* Category tabs */}
       <div className="flex gap-2 px-4 mb-5 overflow-x-auto pb-1" style={{ scrollbarWidth: "none" }}>
         {CATEGORIES.map((cat) => (
           <button
@@ -229,9 +182,7 @@ export default function Menu() {
         ))}
       </div>
 
-      {/* Category section */}
       <div className="px-4">
-        {/* Section heading */}
         <div className={`rounded-2xl bg-gradient-to-r ${current.color} px-4 py-3 mb-4 flex items-center gap-3`}>
           <span className="text-3xl">{current.emoji}</span>
           <div>
@@ -240,7 +191,6 @@ export default function Menu() {
           </div>
         </div>
 
-        {/* Items */}
         <div className="flex flex-col gap-4">
           {current.items.map((item) => (
             <MenuItemCard key={item.id} item={item} categoryKey={current.key} />
@@ -248,7 +198,6 @@ export default function Menu() {
         </div>
       </div>
 
-      {/* WhatsApp CTA */}
       <div className="px-4 mt-6">
         <a
           href={`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent("Hello Kanha Home Bakery! I'd like to place an order. Can you help me?")}`}
