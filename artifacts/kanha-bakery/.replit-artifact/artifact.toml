@@ -1,0 +1,31 @@
+kind = "web"
+previewPath = "/"
+title = "Kanha Home Bakery"
+version = "1.0.0"
+id = "artifacts/kanha-bakery"
+router = "path"
+
+[[integratedSkills]]
+name = "react-vite"
+version = "1.0.0"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 25311
+
+[services.development]
+run = "pnpm --filter @workspace/kanha-bakery run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/kanha-bakery", "run", "build" ]
+publicDir = "artifacts/kanha-bakery/dist/public"
+serve = "static"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "25311"
+BASE_PATH = "/"
