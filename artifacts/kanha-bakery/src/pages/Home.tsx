@@ -239,6 +239,44 @@ export default function Home() {
           <div className="text-xs text-primary font-medium mt-1">+91 70502 56262</div>
         </div>
       </div>
+
+      {/* SEO Content Section */}
+      <div className="mx-4 mt-6 bg-pink-50 border border-pink-100 rounded-2xl p-5">
+        <h2 className="text-base font-bold text-foreground mb-2">
+          🎂 Arrah, Bihar ka Best Cake Shop – Kanha Home Bakery
+        </h2>
+        <p className="text-xs text-muted-foreground leading-relaxed mb-3">
+          <strong>Kanha Home Bakery</strong> – Arrah (Ara), Bihar mein sabse trusted homemade cake shop hai. 
+          Hum daily fresh cakes bake karte hain – Chocolate Truffle, Black Forest, Red Velvet, Butterscotch, Oreo, 
+          Strawberry aur bahut kuch. Birthday cake, anniversary cake, wedding cake, aur fully custom design cakes 
+          Arrah mein doorstep delivery ke saath milti hain. Pure veg ingredients, no artificial colours.
+        </p>
+        <h3 className="text-xs font-bold text-foreground mb-1">
+          आरा बिहार में केक ऑर्डर करें – घर बैठे मंगाएं
+        </h3>
+        <p className="text-xs text-muted-foreground leading-relaxed mb-3">
+          <strong>आरा / अर्रा, बिहार</strong> में सबसे अच्छे होममेड केक के लिए Kanha Home Bakery से संपर्क करें। 
+          बर्थडे केक, कस्टम डिज़ाइन केक, वेडिंग केक, एनिवर्सरी केक – सब कुछ ताज़ा और शुद्ध वेज मिलता है। 
+          WhatsApp पर ऑर्डर करें और घर पर डिलीवरी पाएं। ₹499 से शुरू।
+        </p>
+        <div className="grid grid-cols-2 gap-2 text-[10px] text-muted-foreground">
+          <div>📍 Police Line, M.P. Bagh, Arrah, Bihar 802301</div>
+          <div>📞 +91 70502 56262</div>
+          <div>⏰ Open: 8 AM – 9 PM (All Days)</div>
+          <div>🛵 Home Delivery in Arrah & nearby</div>
+          <div>🌿 100% Pure Veg & Fresh Daily</div>
+          <div>💰 Starting ₹499 | Custom orders available</div>
+        </div>
+      </div>
+
+      {/* SEO Keywords (visually soft, contextually rich) */}
+      <div className="mx-4 mt-3 mb-2">
+        <p className="text-[9px] text-muted-foreground/60 leading-relaxed text-center">
+          Best cake shop in Arrah · Cake in Ara Bihar · Birthday cake Arrah · Custom cake Arrah Bihar · 
+          Homemade cake Arrah · Chocolate cake Arrah · Red velvet Arrah · Black forest cake Bihar · 
+          आरा में केक · बिहार में केक · अर्रा केक शॉप · आरा बिहार बेकरी
+        </p>
+      </div>
     </div>
   );
 }
