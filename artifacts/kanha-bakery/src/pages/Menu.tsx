@@ -32,8 +32,8 @@ interface MenuItem {
   name: string;
   description: string;
   price: number;
-  image: string | null;
-  imageUrl?: string;
+  mrp: number;
+  image: string;
   badge?: string;
   sub: string;
 }
@@ -57,52 +57,38 @@ const CAKE_SUBS: SubCategory[] = [
 
 const CAKES: MenuItem[] = [
   // ── CLASSIC ──────────────────────────────────────────────────────────────
-  { id: "c01", name: "Chocolate Truffle Cake", description: "Rich dark chocolate layers with silky truffle ganache", price: 499, image: cakeChocolateTruffle, badge: "Best Seller", sub: "classic" },
-  { id: "c02", name: "Black Forest Cake", description: "Chocolate cherry cake with whipped cream layers", price: 650, image: cakeBlackForest, badge: "Popular", sub: "classic" },
-  { id: "c03", name: "Butterscotch Cake", description: "Caramel butterscotch cream with crunchy toffee bits", price: 720, image: cakeButterscotch, sub: "classic" },
-  { id: "c04", name: "Red Velvet Cake", description: "Soft velvety red sponge with cream cheese frosting", price: 850, image: cakeRedVelvet, badge: "New", sub: "classic" },
-  { id: "c05", name: "Vanilla Cream Cake", description: "Classic soft vanilla sponge with light whipped cream", price: 550, image: cakeVanilla, sub: "classic" },
-  { id: "c06", name: "Oreo Cake", description: "Oreo chocolate cake with cookies and cream frosting", price: 499, image: cakeOreo, badge: "Trending", sub: "classic" },
-  { id: "c07", name: "KitKat Cake", description: "Chocolate KitKat cake with crispy wafer layers", price: 850, image: cakeKitKat, sub: "classic" },
-  { id: "c08", name: "Mango Delight Cake", description: "Fresh mango sponge with mango cream topping", price: 750, image: cakeMango, sub: "classic" },
-  { id: "c09", name: "Coffee Mocha Cake", description: "Rich coffee mocha cake with espresso buttercream", price: 750, image: cakeCoffee, sub: "classic" },
-  { id: "c10", name: "Caramel Drip Cake", description: "Smooth caramel cake with golden drip finish", price: 800, image: cakeCaramel, sub: "classic" },
-  { id: "c11", name: "Rose Cake", description: "Elegant rose-flavored cake with floral decoration", price: 900, image: cakeRose, sub: "classic" },
-  { id: "c12", name: "White Forest Cake", description: "White chocolate sponge with vanilla cream and cherry", price: 800, image: cakeWhiteForest, sub: "classic" },
-  { id: "c13", name: "Choco Lava Cake", description: "Warm chocolate cake with gooey molten center", price: 599, imageUrl: "https://images.unsplash.com/photo-1602351447937-745cb720612f?w=400&h=400&fit=crop", image: null, sub: "classic" },
-  { id: "c14", name: "Tiramisu Cake", description: "Italian tiramisu with espresso-soaked sponge layers", price: 950, imageUrl: "https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?w=400&h=400&fit=crop", image: null, sub: "classic" },
+  { id: "c01", name: "Chocolate Truffle Cake", description: "Rich dark chocolate with silky ganache", price: 399, mrp: 499, image: cakeChocolateTruffle, badge: "Best Seller", sub: "classic" },
+  { id: "c02", name: "Black Forest Cake", description: "Chocolate sponge, cherries & whipped cream", price: 519, mrp: 650, image: cakeBlackForest, badge: "Popular", sub: "classic" },
+  { id: "c03", name: "Butterscotch Cake", description: "Caramel cream with crunchy toffee bits", price: 579, mrp: 720, image: cakeButterscotch, sub: "classic" },
+  { id: "c04", name: "Red Velvet Cake", description: "Velvety sponge with cream cheese frosting", price: 679, mrp: 850, image: cakeRedVelvet, badge: "New", sub: "classic" },
+  { id: "c05", name: "Vanilla Cream Cake", description: "Soft vanilla sponge with light whipped cream", price: 439, mrp: 550, image: cakeVanilla, sub: "classic" },
+  { id: "c06", name: "Oreo Cookie Cake", description: "Choco sponge with Oreo & cream frosting", price: 399, mrp: 499, image: cakeOreo, badge: "Trending", sub: "classic" },
+  { id: "c07", name: "KitKat Chocolate Cake", description: "Chocolate cake wrapped in crispy KitKat", price: 679, mrp: 850, image: cakeKitKat, sub: "classic" },
+  { id: "c08", name: "Mango Delight Cake", description: "Fresh mango sponge with mango cream", price: 599, mrp: 750, image: cakeMango, sub: "classic" },
+  { id: "c09", name: "Coffee Mocha Cake", description: "Rich coffee cake with espresso buttercream", price: 599, mrp: 750, image: cakeCoffee, sub: "classic" },
+  { id: "c10", name: "Caramel Drip Cake", description: "Smooth caramel cake with golden drip", price: 639, mrp: 800, image: cakeCaramel, sub: "classic" },
+  { id: "c11", name: "Rose Cream Cake", description: "Elegant rose-flavored cake with floral decor", price: 719, mrp: 900, image: cakeRose, sub: "classic" },
+  { id: "c12", name: "White Forest Cake", description: "White choco sponge with vanilla cream & cherry", price: 639, mrp: 800, image: cakeWhiteForest, sub: "classic" },
 
   // ── FRUIT ────────────────────────────────────────────────────────────────
-  { id: "f01", name: "Pineapple Cake", description: "Fresh pineapple cake with tropical fruit cream", price: 1500, image: cakePineapple, sub: "fruit" },
-  { id: "f02", name: "Strawberry Cake", description: "Strawberry cream cake with fresh fruit layers", price: 1000, image: cakeStrawberry, sub: "fruit" },
-  { id: "f03", name: "Blueberry Cake", description: "Blueberry cake with berry cream topping", price: 1000, image: cakeBlueberry, sub: "fruit" },
-  { id: "f04", name: "Mango Tango Cake", description: "Tropical mango layers with fresh mango pulp", price: 900, imageUrl: "https://images.unsplash.com/photo-1621303837174-89787a7d4729?w=400&h=400&fit=crop", image: null, sub: "fruit" },
-  { id: "f05", name: "Mixed Fruit Cake", description: "Loaded with seasonal fresh fruits on whipped cream", price: 850, imageUrl: "https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?w=400&h=400&fit=crop", image: null, sub: "fruit" },
+  { id: "f01", name: "Pineapple Fresh Cake", description: "Fresh pineapple cake with tropical cream", price: 1199, mrp: 1500, image: cakePineapple, sub: "fruit" },
+  { id: "f02", name: "Strawberry Fresh Cake", description: "Strawberry cream with fresh fruit layers", price: 799, mrp: 1000, image: cakeStrawberry, sub: "fruit" },
+  { id: "f03", name: "Blueberry Cream Cake", description: "Blueberry cake with fresh berry topping", price: 799, mrp: 1000, image: cakeBlueberry, sub: "fruit" },
 
   // ── LOVE & ANNIVERSARY ───────────────────────────────────────────────────
-  { id: "l01", name: "Pink Love Drip Cake", description: "Romantic pink drip cake with love topper & sprinkles", price: 1200, image: cakePinkLove, badge: "Trending", sub: "love" },
-  { id: "l02", name: "Heart Shape Cake", description: "Heart-shaped birthday cake — perfect for your love", price: 1500, image: cakeHeartBirthday, sub: "love" },
-  { id: "l03", name: "Couple Theme Round Cake", description: "Beautiful couple cartoon theme round cake", price: 1200, image: cakeCoupleRound, sub: "love" },
-  { id: "l04", name: "I Love You Cake", description: "Cute 'I Love You' couple cake with heart decor", price: 1000, image: cakeILoveYou, sub: "love" },
-  { id: "l05", name: "Couple Hug Cake", description: "Adorable couple hugging theme cake with hearts", price: 1200, image: cakeCoupleHug, sub: "love" },
-  { id: "l06", name: "Wife Special Cake", description: "Surprise birthday cake for the best wife ever", price: 1500, image: cakeWifeBirthday, badge: "Special", sub: "love" },
+  { id: "l01", name: "Pink Love Drip Cake", description: "Romantic pink drip with love topper", price: 959, mrp: 1200, image: cakePinkLove, badge: "Trending", sub: "love" },
+  { id: "l02", name: "Heart Shape Cake", description: "Heart-shaped cake — perfect for your love", price: 1199, mrp: 1500, image: cakeHeartBirthday, sub: "love" },
+  { id: "l03", name: "Couple Theme Round Cake", description: "Cute couple cartoon theme round cake", price: 959, mrp: 1200, image: cakeCoupleRound, sub: "love" },
+  { id: "l04", name: "I Love You Cake", description: "'I Love You' couple cake with heart decor", price: 799, mrp: 1000, image: cakeILoveYou, sub: "love" },
+  { id: "l05", name: "Couple Hug Cake", description: "Adorable couple hugging theme with hearts", price: 959, mrp: 1200, image: cakeCoupleHug, sub: "love" },
+  { id: "l06", name: "Wife Special Cake", description: "Surprise birthday cake for your wife", price: 1199, mrp: 1500, image: cakeWifeBirthday, badge: "Special", sub: "love" },
 
   // ── BIRTHDAY ─────────────────────────────────────────────────────────────
-  { id: "b01", name: "Blue Birthday Cake", description: "Stunning blue floral Happy Birthday cake with topper", price: 1500, image: cakeBlueBirthday, badge: "New", sub: "birthday" },
-  { id: "b02", name: "Princess Theme Cake", description: "Royal princess tiara cake for little queens", price: 1200, image: cakePrincess, sub: "birthday" },
-  { id: "b04", name: "Number Birthday Cake", description: "Custom number cake for milestone birthdays", price: 1000, imageUrl: "https://images.unsplash.com/photo-1562777717-dc6984f65a63?w=400&h=400&fit=crop", image: null, sub: "birthday" },
-  { id: "b08", name: "Ombre Birthday Cake", description: "Gradient ombre frosting — from light to deep color", price: 1200, imageUrl: "https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400&h=400&fit=crop", image: null, sub: "birthday" },
-  { id: "b09", name: "Chocolate Box Cake", description: "Chocolate cake topped with premium chocolate boxes", price: 1500, imageUrl: "https://images.unsplash.com/photo-1606890737304-57a1ca8a5b62?w=400&h=400&fit=crop", image: null, sub: "birthday" },
+  { id: "b01", name: "Blue Floral Birthday Cake", description: "Blue floral Happy Birthday cake with topper", price: 1199, mrp: 1500, image: cakeBlueBirthday, badge: "New", sub: "birthday" },
+  { id: "b02", name: "Princess Theme Cake", description: "Royal princess tiara cake for little queens", price: 959, mrp: 1200, image: cakePrincess, sub: "birthday" },
 
   // ── KIDS ─────────────────────────────────────────────────────────────────
-  { id: "k01", name: "Mickey Mouse Cake", description: "Fun Mickey Mouse cartoon theme cake for kids", price: 1200, image: cakeMickey, sub: "kids" },
-  { id: "k02", name: "Unicorn Cake", description: "Magical unicorn cake with rainbow mane & horn", price: 1500, imageUrl: "https://images.unsplash.com/photo-1558636508-e0969431e349?w=400&h=400&fit=crop", image: null, sub: "kids" },
-  { id: "k03", name: "Barbie Doll Cake", description: "Beautiful Barbie doll cake in a princess gown", price: 1500, imageUrl: "https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?w=400&h=400&fit=crop", image: null, sub: "kids" },
-  { id: "k04", name: "Superhero Cake", description: "Your favorite superhero themed fondant cake", price: 1400, imageUrl: "https://images.unsplash.com/photo-1550617931-e17a7b70dce2?w=400&h=400&fit=crop", image: null, sub: "kids" },
-  { id: "k05", name: "Dinosaur Cake", description: "Roarsome dinosaur jungle theme cake for kids", price: 1300, imageUrl: "https://images.unsplash.com/photo-1562777717-dc6984f65a63?w=400&h=400&fit=crop", image: null, sub: "kids" },
-  { id: "k06", name: "Ice Cream Cake", description: "Chilled ice cream cake with scoops on top", price: 900, imageUrl: "https://images.unsplash.com/photo-1563805042-7684c019e1cb?w=400&h=400&fit=crop", image: null, sub: "kids" },
-  { id: "k07", name: "Alphabet Cake", description: "Custom alphabet/letter shaped fondant cake", price: 1000, imageUrl: "https://images.unsplash.com/photo-1598214886806-c95b7e8a90a1?w=400&h=400&fit=crop", image: null, sub: "kids" },
-  { id: "k08", name: "Cartoon Theme Cake", description: "Any cartoon character fondant theme cake", price: 1200, imageUrl: "https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400&h=400&fit=crop", image: null, sub: "kids" },
+  { id: "k01", name: "Mickey Mouse Cake", description: "Fun Mickey Mouse cartoon cake for kids", price: 959, mrp: 1200, image: cakeMickey, sub: "kids" },
 ];
 
 const PIZZA_ITEMS = [
@@ -114,10 +100,10 @@ const PIZZA_ITEMS = [
 
 function CakeCard({ item }: { item: MenuItem }) {
   const [added, setAdded] = useState(false);
-  const imgSrc = item.image ?? item.imageUrl ?? "";
+  const discount = Math.round(((item.mrp - item.price) / item.mrp) * 100);
 
   const handleOrderNow = () => {
-    const msg = `Hello Kanha Home Bakery! I want to order:\n\n*${item.name}*\nPrice: ₹${item.price} / 1kg\n\nPlease confirm availability. Thank you!`;
+    const msg = `Hello Kanha Home Bakery! I want to order:\n\n*${item.name}*\nPrice: ₹${item.price} / 1kg (MRP ₹${item.mrp})\n\nPlease confirm availability. Thank you!`;
     window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`, "_blank");
   };
 
@@ -130,23 +116,40 @@ function CakeCard({ item }: { item: MenuItem }) {
 
   return (
     <div className="bg-white rounded-2xl border border-border shadow-sm overflow-hidden cake-card">
-      <div className="relative h-48 overflow-hidden bg-pink-50">
-        <img src={imgSrc} alt={item.name} className="w-full h-full object-cover" loading="lazy"
-          onError={(e) => { (e.target as HTMLImageElement).style.display = "none"; }} />
+      <div className="relative h-52 overflow-hidden bg-pink-50">
+        <img
+          src={item.image}
+          alt={`${item.name} - Kanha Home Bakery Arrah Bihar`}
+          className="w-full h-full object-cover"
+          loading="lazy"
+        />
         {item.badge && (
           <div className="absolute top-2 left-2">
-            <span className="bg-amber-400 text-amber-900 text-[10px] font-bold px-2 py-1 rounded-full shadow">⭐ {item.badge}</span>
+            <span className="bg-amber-400 text-amber-900 text-[10px] font-bold px-2 py-1 rounded-full shadow">
+              ⭐ {item.badge}
+            </span>
           </div>
         )}
-        <div className="absolute bottom-2 right-2 bg-white/90 backdrop-blur-sm rounded-xl px-3 py-1 shadow">
-          <span className="text-primary font-bold">₹{item.price}</span>
+        {discount > 0 && (
+          <div className="absolute top-2 right-2">
+            <span className="bg-red-500 text-white text-[10px] font-bold px-2 py-1 rounded-full shadow">
+              {discount}% OFF
+            </span>
+          </div>
+        )}
+        <div className="absolute bottom-2 left-2 bg-black/60 backdrop-blur-sm rounded-md px-2 py-0.5">
+          <span className="text-white text-[10px] font-semibold">1 Kg</span>
         </div>
       </div>
       <div className="p-3.5">
         <h3 className="font-bold text-sm text-foreground leading-snug">{item.name}</h3>
-        <span className="text-[10px] text-muted-foreground bg-pink-50 px-2 py-0.5 rounded-full inline-block mt-1">1kg</span>
-        <p className="text-xs text-muted-foreground mt-1 mb-3 line-clamp-2">{item.description}</p>
-        <div className="flex gap-2">
+        <p className="text-xs text-muted-foreground mt-1 line-clamp-2">{item.description}</p>
+        <div className="flex items-baseline gap-2 mt-2">
+          <span className="text-primary font-bold text-lg leading-none">₹{item.price}</span>
+          <span className="text-xs text-muted-foreground line-through">₹{item.mrp}</span>
+          <span className="text-[10px] font-semibold text-green-600">Save ₹{item.mrp - item.price}</span>
+        </div>
+        <div className="flex gap-2 mt-3">
           <button onClick={handleAdd}
             className={`flex-1 py-2.5 rounded-xl text-xs font-bold border-2 flex items-center justify-center gap-1 transition-all ${added ? "border-green-500 bg-green-50 text-green-600" : "border-primary text-primary"}`}>
             <ShoppingCart size={13} />
