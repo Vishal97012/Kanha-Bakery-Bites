@@ -21,12 +21,64 @@ const INSTAGRAM_URL = "https://www.instagram.com/kanhahomebakery?igsh=MW50b2M3Nj
 const HERO_CAKES = [cakeChocolateTruffle, cakePinkLove, cakeHeartBirthday, cakeBlueBirthday];
 
 const FEATURED = [
-  { name: "Chocolate Truffle", price: 499, image: cakeChocolateTruffle, badge: "Best Seller", rating: 4.9 },
-  { name: "Black Forest", price: 650, image: cakeBlackForest, badge: "Popular", rating: 4.8 },
-  { name: "Oreo Cake", price: 499, image: cakeOreo, badge: "Trending", rating: 4.7 },
-  { name: "Strawberry Cake", price: 1000, image: cakeStrawberry, rating: 4.7 },
-  { name: "Butterscotch Cake", price: 720, image: cakeButterscotch, rating: 4.8 },
-  { name: "Red Velvet Cake", price: 850, image: cakeRedVelvet, badge: "New", rating: 4.9 },
+  {
+    name: "Chocolate Truffle Cake",
+    weight: "1 Kg",
+    price: 799,
+    mrp: 999,
+    image: cakeChocolateTruffle,
+    badge: "Best Seller",
+    rating: 4.9,
+    reviews: 124,
+  },
+  {
+    name: "Black Forest Cake",
+    weight: "1 Kg",
+    price: 649,
+    mrp: 799,
+    image: cakeBlackForest,
+    badge: "Popular",
+    rating: 4.8,
+    reviews: 98,
+  },
+  {
+    name: "Oreo Cream Cake",
+    weight: "1 Kg",
+    price: 749,
+    mrp: 899,
+    image: cakeOreo,
+    badge: "Trending",
+    rating: 4.7,
+    reviews: 76,
+  },
+  {
+    name: "Strawberry Fresh Cream",
+    weight: "1 Kg",
+    price: 699,
+    mrp: 849,
+    image: cakeStrawberry,
+    rating: 4.7,
+    reviews: 56,
+  },
+  {
+    name: "Butterscotch Crunch",
+    weight: "1 Kg",
+    price: 599,
+    mrp: 749,
+    image: cakeButterscotch,
+    rating: 4.8,
+    reviews: 87,
+  },
+  {
+    name: "Red Velvet Premium",
+    weight: "1 Kg",
+    price: 899,
+    mrp: 1099,
+    image: cakeRedVelvet,
+    badge: "New",
+    rating: 4.9,
+    reviews: 43,
+  },
 ];
 
 const GALLERY = [
@@ -134,33 +186,57 @@ export default function Home() {
         </div>
 
         <div className="grid grid-cols-2 gap-3">
-          {FEATURED.map((cake) => (
-            <Link key={cake.name} href="/menu">
-              <div className="bg-white rounded-2xl border border-border shadow-sm overflow-hidden cake-card cursor-pointer active:scale-[0.97] transition-transform">
-                <div className="relative h-36 overflow-hidden bg-pink-50">
-                  <img src={cake.image} alt={cake.name} className="w-full h-full object-cover" />
-                  {cake.badge && (
-                    <div className="absolute top-1.5 left-1.5">
-                      <span className="bg-amber-400 text-amber-900 text-[9px] font-bold px-1.5 py-0.5 rounded-full">
-                        ⭐ {cake.badge}
-                      </span>
+          {FEATURED.map((cake) => {
+            const discount = Math.round(((cake.mrp - cake.price) / cake.mrp) * 100);
+            return (
+              <Link key={cake.name} href="/menu">
+                <div className="bg-white rounded-2xl border border-border shadow-sm overflow-hidden cake-card cursor-pointer active:scale-[0.97] transition-transform">
+                  <div className="relative h-40 overflow-hidden bg-pink-50">
+                    <img
+                      src={cake.image}
+                      alt={`${cake.name} - ${cake.weight} - Kanha Home Bakery Arrah Bihar`}
+                      loading="lazy"
+                      className="w-full h-full object-cover"
+                    />
+                    {cake.badge && (
+                      <div className="absolute top-1.5 left-1.5">
+                        <span className="bg-amber-400 text-amber-900 text-[9px] font-bold px-1.5 py-0.5 rounded-full shadow">
+                          ⭐ {cake.badge}
+                        </span>
+                      </div>
+                    )}
+                    {discount > 0 && (
+                      <div className="absolute top-1.5 right-1.5">
+                        <span className="bg-red-500 text-white text-[9px] font-bold px-1.5 py-0.5 rounded-full shadow">
+                          {discount}% OFF
+                        </span>
+                      </div>
+                    )}
+                    <div className="absolute bottom-1.5 left-1.5 bg-black/60 backdrop-blur-sm rounded-md px-1.5 py-0.5">
+                      <span className="text-white text-[9px] font-semibold">{cake.weight}</span>
                     </div>
-                  )}
-                  <div className="absolute bottom-1.5 right-1.5 bg-white/90 rounded-lg px-2 py-0.5 shadow">
-                    <span className="text-primary font-bold text-sm">₹{cake.price}</span>
+                  </div>
+                  <div className="p-2.5">
+                    <div className="font-bold text-xs text-foreground leading-snug line-clamp-1">{cake.name}</div>
+                    <div className="flex items-center gap-1 mt-1">
+                      <div className="flex items-center gap-0.5 bg-green-600 text-white px-1 py-0.5 rounded">
+                        <span className="text-[9px] font-bold">{cake.rating}</span>
+                        <Star size={8} className="fill-white text-white" />
+                      </div>
+                      <span className="text-[9px] text-muted-foreground">({cake.reviews})</span>
+                    </div>
+                    <div className="flex items-baseline gap-1.5 mt-1.5">
+                      <span className="text-primary font-bold text-base leading-none">₹{cake.price}</span>
+                      <span className="text-[10px] text-muted-foreground line-through">₹{cake.mrp}</span>
+                    </div>
+                    <div className="text-[9px] text-green-600 font-semibold mt-0.5">
+                      Save ₹{cake.mrp - cake.price}
+                    </div>
                   </div>
                 </div>
-                <div className="p-2.5">
-                  <div className="font-bold text-xs text-foreground leading-snug">{cake.name}</div>
-                  <div className="flex items-center gap-1 mt-1">
-                    <Star size={10} className="fill-amber-400 text-amber-400" />
-                    <span className="text-[10px] font-medium text-foreground">{cake.rating}</span>
-                    <span className="text-[10px] text-muted-foreground">· 1kg</span>
-                  </div>
-                </div>
-              </div>
-            </Link>
-          ))}
+              </Link>
+            );
+          })}
         </div>
       </div>
 
