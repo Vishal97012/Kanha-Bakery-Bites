@@ -10,6 +10,7 @@ import CustomCake from "@/pages/CustomCake";
 import Cart from "@/pages/Cart";
 import Contact from "@/pages/Contact";
 import NotFound from "@/pages/not-found";
+import CakeDetail from "@/pages/CakeDetail";
 
 const queryClient = new QueryClient();
 
@@ -24,6 +25,7 @@ function Router() {
           <Route path="/custom-cake" component={CustomCake} />
           <Route path="/cart" component={Cart} />
           <Route path="/contact" component={Contact} />
+          <Route path="/cake/:slug" component={CakeDetail} />
           <Route component={NotFound} />
         </Switch>
       </main>
