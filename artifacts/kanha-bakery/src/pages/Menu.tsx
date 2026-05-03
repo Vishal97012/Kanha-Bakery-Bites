@@ -41,51 +41,89 @@ const SECTION_TITLES: Record<Category | "all", string> = {
 function CakeCard({ item }: { item: (typeof ALL_PRODUCTS)[number] }) {
   const [added, setAdded] = useState(false);
   const mrp = Math.round(item.min / 0.9);
-  const handleOrderNow = () => {
-    const msg = `Hi, I want to order *${item.name}* 🎂\n\n${item.desc}\n\nPlease share availability.`;
+
+  const handleOrderNow = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    const msg = `Hi, I want to order *${item.name}* 🎂\n\n${item.desc}\n\nPlease share weight options & availability.`;
     window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`, "_blank");
   };
-  const handleAdd = () => {
+
+  const handleAdd = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
     addToCart({ name: item.name, price: item.min, weight: "1kg", quantity: 1, imageEmoji: "🎂" });
     window.dispatchEvent(new Event("cart-updated"));
     setAdded(true);
     setTimeout(() => setAdded(false), 1200);
   };
+
   return (
-    <div className="bg-white rounded-2xl border border-[#e8dccc] shadow-sm overflow-hidden">
-      <Link href={`/cake/${item.slug}`}>
+    <Link href={`/cake/${item.slug}`}>
+      <div className="bg-white rounded-xl overflow-hidden shadow-sm border border-[#e8dccc] active:scale-[0.98] transition-transform cursor-pointer">
         <div className="relative aspect-square overflow-hidden bg-[#fdf8f3]">
-          <img src={item.image} alt={item.name} className="w-full h-full object-cover" loading="lazy" />
-          {item.badge && <div className="absolute top-2 left-2 bg-[#5a2e1f] text-white text-[10px] font-bold px-2 py-1 rounded-full shadow">{item.badge}</div>}
-          <div className="absolute top-2 right-2 bg-white/95 text-[#5a2e1f] text-[10px] font-bold px-2 py-1 rounded-full shadow">10% OFF</div>
-          <div className="absolute bottom-2 left-2 bg-black/55 text-white text-[10px] font-semibold px-2 py-1 rounded-full">1 Kg</div>
+          <img
+            src={item.image}
+            alt={`${item.name} – Kanha Home Bakery Arrah Bihar`}
+            loading="lazy"
+            className="w-full h-full object-cover"
+          />
+          {item.badge && (
+            <div className="absolute top-2 left-2">
+              <span className="bg-[#5a2e1f] text-white text-[9px] font-bold px-2 py-0.5 rounded-full shadow">
+                {item.badge}
+              </span>
+            </div>
+          )}
+          <div className="absolute bottom-2 right-2 bg-white/95 text-[#5a2e1f] text-[10px] font-bold px-2 py-1 rounded-full shadow">
+            10% OFF
+          </div>
+          <div className="absolute bottom-2 left-2 bg-black/55 text-white text-[9px] font-semibold px-1.5 py-0.5 rounded-full">
+            1 Kg
+          </div>
         </div>
-      </Link>
-      <div className="p-3.5">
-        <Link href={`/cake/${item.slug}`}>
-          <div className="font-bold text-sm text-[#5a2e1f] leading-snug">{item.name}</div>
-        </Link>
-        <p className="text-[12px] text-[#6a5a4d] mt-1 line-clamp-2">{item.desc}</p>
-        <div className="flex items-baseline gap-2 mt-2">
-          <span className="text-[#b8893a] font-extrabold text-lg">₹{item.min.toLocaleString()}</span>
-          <span className="text-xs text-[#999] line-through">₹{mrp.toLocaleString()}</span>
-        </div>
-        <div className="flex gap-2 mt-3">
-          <button onClick={handleAdd} className={`flex-1 py-2.5 rounded-xl text-xs font-bold border-2 flex items-center justify-center gap-1 transition-all ${added ? "border-green-500 bg-green-50 text-green-600" : "border-[#5a2e1f] text-[#5a2e1f]"}`}>
-            <ShoppingCart size={13} /> {added ? "Added!" : "Add"}
-          </button>
-          <button onClick={handleOrderNow} className="flex-1 py-2.5 rounded-xl text-xs font-bold bg-[#25D366] text-white flex items-center justify-center gap-1">
-            <span>💬</span> Order Now
-          </button>
+        <div className="p-3 text-center">
+          <div className="font-semibold text-[13px] text-[#5a2e1f] leading-snug min-h-[34px] flex items-center justify-center">
+            {item.name}
+          </div>
+          <div className="flex items-baseline justify-center gap-2 mt-1.5">
+            <span className="text-[#b8893a] font-bold text-sm">₹{item.min.toLocaleString()}</span>
+            <span className="text-[11px] text-[#bbb] line-through">₹{mrp.toLocaleString()}</span>
+          </div>
+          <div className="flex gap-2 mt-3">
+            <button
+              onClick={handleAdd}
+              className={`flex-1 py-2 rounded-lg text-[11px] font-bold border-2 flex items-center justify-center gap-1 transition-all ${
+                added
+                  ? "border-green-500 bg-green-50 text-green-600"
+                  : "border-[#5a2e1f] text-[#5a2e1f]"
+              }`}
+            >
+              <ShoppingCart size={11} />
+              {added ? "Added!" : "Add"}
+            </button>
+            <button
+              onClick={handleOrderNow}
+              className="flex-1 py-2 rounded-lg text-[11px] font-bold bg-[#25D366] text-white flex items-center justify-center gap-1"
+            >
+              💬 Order
+            </button>
+          </div>
         </div>
       </div>
-    </div>
+    </Link>
   );
 }
+
+const wa = (msg: string) =>
+  `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`;
+
+const DEFAULT_ORDER_MSG = "Hi, I want to order a cake 🎂";
 
 export default function Menu() {
   const [subTab, setSubTab] = useState<Category>("all");
   const visibleCakes = subTab === "all" ? ALL_PRODUCTS : ALL_PRODUCTS.filter((c) => c.category === subTab);
+  const activeCat = CATEGORIES.find((c) => c.key === subTab);
 
   return (
     <div className="max-w-lg mx-auto pb-24 relative bg-[#fdf8f3]">
@@ -125,7 +163,7 @@ export default function Menu() {
         <div className="w-12 h-0.5 bg-[#b8893a] mx-auto mt-2" />
       </div>
 
-      <div className="px-4 flex flex-col gap-4">
+      <div className="px-4 grid grid-cols-2 gap-4">
         {visibleCakes.map((item) => <CakeCard key={item.slug} item={item} />)}
       </div>
 
@@ -146,8 +184,26 @@ export default function Menu() {
 
       <div className="mt-10 mx-4 text-center">
         <h2 className="text-sm font-bold text-[#5a2e1f]">Best Cake Shop in Arrah, Bihar</h2>
-        <p className="text-[11px] text-[#5a2e1f]/70 leading-relaxed mt-2">Kanha Home Bakery — fresh, pure veg, premium cakes with doorstep delivery in Arrah.</p>
+        <p className="text-[11px] text-[#5a2e1f]/70 leading-relaxed mt-2">
+          Kanha Home Bakery — Arrah ki sabse trusted homemade cake shop. Birthday, anniversary,
+          wedding, Mother's Day & custom design cakes — fresh, pure veg, doorstep delivery.
+        </p>
+        <p className="text-[11px] text-[#5a2e1f]/60 mt-2">
+          📍 Police Line, M.P. Bagh, Arrah, Bihar – 802301 · 📞 +91 70502 56262
+        </p>
       </div>
+
+      <a
+        href={activeCat ? wa(activeCat.waMsg) : wa(DEFAULT_ORDER_MSG)}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Chat on WhatsApp"
+        className="fixed bottom-5 right-5 z-50 w-14 h-14 rounded-full bg-[#25D366] text-white shadow-2xl flex items-center justify-center text-2xl active:scale-95 transition-transform hover:scale-105"
+        style={{ boxShadow: "0 8px 24px rgba(37, 211, 102, 0.5)" }}
+      >
+        <span className="absolute inset-0 rounded-full bg-[#25D366] animate-ping opacity-30" />
+        <span className="relative">💬</span>
+      </a>
     </div>
   );
 }
