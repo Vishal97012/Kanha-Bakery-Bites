@@ -1,5 +1,5 @@
 import { Link } from "wouter";
-import { ShieldCheck, Clock, BadgeCheck, Truck } from "lucide-react";
+import { ShieldCheck, Clock, BadgeCheck, Truck, ChevronRight, MapPin } from "lucide-react";
 import { WHATSAPP_NUMBER } from "@/lib/cart";
 
 import cakeChocolateTruffle from "@assets/IMG-20260326-WA0090_1775751113041.jpg";
@@ -16,6 +16,7 @@ import cakeRedVelvet from "@assets/IMG-20260326-WA0086_1775751113012.jpg";
 import cakeButterscotch from "@assets/IMG-20260401-WA0006_1775751112757.jpg";
 import cakePrincess from "@assets/IMG-20260331-WA0000_1775751113066.jpg";
 import cakeCoupleRound from "@assets/IMG-20260409-WA0110_1775753795743.jpg";
+import locationStrip from "@assets/IMG_20260503_121418_1777790767862.jpg";
 
 const wa = (msg: string) =>
   `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`;
@@ -23,14 +24,10 @@ const wa = (msg: string) =>
 const DEFAULT_ORDER_MSG = "Hi, I want to order a cake 🎂";
 
 const CATEGORIES = [
-  { label: "Birthday Cake", img: cakeBlueBirthday },
-  { label: "Cake For Wife", img: cakeWife },
-  { label: "Heart Cake", img: cakeHeartBirthday },
-  { label: "Couple Cake", img: cakeCoupleHug },
-  { label: "Pink Love", img: cakePinkLove },
-  { label: "Princess Cake", img: cakePrincess },
-  { label: "Chocolate", img: cakeChocolateTruffle },
-  { label: "Custom Cake", img: cakeRedVelvet },
+  { label: "Mother's Day", img: cakePinkLove },
+  { label: "Anniversary", img: cakeLoveCouple },
+  { label: "Birthday", img: cakeBlueBirthday },
+  { label: "Mango Cakes", img: cakeButterscotch },
 ];
 
 const PRODUCTS = [
@@ -60,50 +57,33 @@ const TRUST_BADGES = [
 export default function Home() {
   return (
     <div className="max-w-lg mx-auto pb-24 relative bg-[#fdf8f3]">
-      {/* Sticky Top Offer Bar */}
-      <div className="sticky top-16 z-40 bg-[#5a2e1f] text-white text-[11px] font-semibold py-2 px-3 text-center tracking-wide">
-        FLAT ₹100 OFF · FREE DELIVERY ABOVE ₹499 · SAME DAY DELIVERY
-      </div>
-
-      {/* Hero */}
-      <div className="relative bg-[#fdf8f3] pt-7 pb-7 px-5 text-center">
-        <div className="inline-block w-20 h-20 rounded-full border-4 border-[#5a2e1f] bg-white shadow-md flex items-center justify-center mb-4 mx-auto">
-          <span className="text-3xl">🎂</span>
-        </div>
-        <h1 className="text-[26px] font-extrabold text-[#5a2e1f] leading-tight tracking-tight">
-          KANHA HOME BAKERY
-        </h1>
-        <div className="text-[10px] font-bold text-[#b8893a] tracking-[0.25em] mt-1">
-          A BOUTIQUE BAKERY · ARRAH
-        </div>
-        <p className="text-[#5a2e1f]/70 mt-3 text-sm leading-relaxed">
-          Freshly baked cakes, made with pure love — celebrating every moment with you.
-        </p>
-
-        <div className="flex gap-3 mt-5 justify-center">
-          <a href={wa("Hi, I want to make a Custom Enquiry for a cake 🎂")} target="_blank" rel="noopener noreferrer">
-            <button className="bg-[#5a2e1f] text-white px-6 py-3 rounded-md font-bold text-sm shadow-md active:scale-95 transition-transform tracking-wide">
-              Custom Enquiry
-            </button>
-          </a>
-          <a href={wa(DEFAULT_ORDER_MSG)} target="_blank" rel="noopener noreferrer">
-            <button className="bg-[#25D366] text-white px-5 py-3 rounded-md font-bold text-sm shadow-md active:scale-95 transition-transform">
-              💬 WhatsApp
-            </button>
-          </a>
+      <div className="bg-[#fbf8eb] text-[#6d6a3a] px-4 py-4 border-b border-[#efe7c8]">
+        <div className="flex items-center gap-3 text-[15px] font-semibold leading-tight">
+          <MapPin size={22} className="flex-shrink-0" />
+          <span>Enter Location to check availability</span>
+          <ChevronRight size={22} className="ml-auto flex-shrink-0" />
         </div>
       </div>
 
-      {/* Categories – circular row */}
-      <div className="bg-white py-6 border-y border-[#e8dccc]">
-        <div className="flex gap-4 overflow-x-auto px-5 pb-2" style={{ scrollbarWidth: "none" }}>
+      <div className="sticky top-16 z-40 bg-[#7a7f2a] text-white px-4 py-5 rounded-b-[28px] shadow-md mx-4 mt-4 overflow-hidden">
+        <div className="flex items-center justify-between gap-4">
+          <div>
+            <div className="text-[28px] font-extrabold leading-none">FREE DELIVERY!!!</div>
+            <div className="text-[17px] mt-2 opacity-95">On eligible delivery time slots.</div>
+          </div>
+          <div className="text-[54px] leading-none">🚚</div>
+        </div>
+      </div>
+
+      <div className="mt-8 px-4">
+        <div className="flex gap-4 overflow-x-auto pb-2" style={{ scrollbarWidth: "none" }}>
           {CATEGORIES.map((c) => (
             <Link key={c.label} href="/menu">
-              <div className="flex-shrink-0 w-20 cursor-pointer text-center">
-                <div className="w-20 h-20 rounded-full overflow-hidden border-2 border-[#e8dccc] shadow-sm bg-[#fdf8f3]">
+              <div className="flex-shrink-0 w-[110px] text-center">
+                <div className="w-[110px] h-[110px] rounded-[26px] overflow-hidden shadow-sm bg-white">
                   <img src={c.img} alt={c.label} className="w-full h-full object-cover" loading="lazy" />
                 </div>
-                <div className="text-[10px] font-semibold text-[#5a2e1f] mt-2 leading-tight">
+                <div className="text-[18px] font-semibold text-[#111] mt-3 leading-tight">
                   {c.label}
                 </div>
               </div>
@@ -112,13 +92,11 @@ export default function Home() {
         </div>
       </div>
 
-      {/* Section heading */}
-      <div className="text-center pt-8 pb-4 px-4">
+      <div className="pt-10 pb-4 px-4 text-center">
         <h2 className="text-xl font-extrabold text-[#5a2e1f] tracking-tight">Our Signature Cakes</h2>
         <div className="w-12 h-0.5 bg-[#b8893a] mx-auto mt-2"></div>
       </div>
 
-      {/* Product Grid – Bakeoff style */}
       <div className="px-4 grid grid-cols-2 gap-4">
         {PRODUCTS.map((p) => (
           <a
@@ -148,7 +126,6 @@ export default function Home() {
         ))}
       </div>
 
-      {/* View All */}
       <div className="text-center mt-6 px-4">
         <Link href="/menu">
           <button className="bg-[#5a2e1f] text-white px-8 py-3 rounded-md font-bold text-sm shadow-md tracking-wide active:scale-95 transition-transform">
@@ -157,7 +134,6 @@ export default function Home() {
         </Link>
       </div>
 
-      {/* Trust Badges */}
       <div className="mt-10 px-4 space-y-3">
         {TRUST_BADGES.map((b) => (
           <div key={b.title} className="bg-[#f5ece0] rounded-md py-6 px-4 text-center">
@@ -168,7 +144,10 @@ export default function Home() {
         ))}
       </div>
 
-      {/* SEO mini-block (kept for Google Arrah ranking) */}
+      <div className="mt-10 mx-4 bg-white rounded-2xl overflow-hidden shadow-sm border border-[#e8dccc]">
+        <img src={locationStrip} alt="Check availability and free delivery" className="w-full h-auto block" />
+      </div>
+
       <div className="mt-10 mx-4 text-center">
         <h2 className="text-sm font-bold text-[#5a2e1f]">
           Best Cake Shop in Arrah, Bihar
@@ -182,7 +161,6 @@ export default function Home() {
         </p>
       </div>
 
-      {/* Floating WhatsApp Button */}
       <a
         href={wa(DEFAULT_ORDER_MSG)}
         target="_blank"
