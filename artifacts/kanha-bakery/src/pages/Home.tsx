@@ -16,6 +16,9 @@ import cakeRedVelvet from "@assets/IMG-20260326-WA0086_1775751113012.jpg";
 import cakeButterscotch from "@assets/IMG-20260401-WA0006_1775751112757.jpg";
 import cakePrincess from "@assets/IMG-20260331-WA0000_1775751113066.jpg";
 import cakeCoupleRound from "@assets/IMG-20260409-WA0110_1775753795743.jpg";
+import motherCake1 from "@assets/Screenshot_2026-05-03-12-19-19-25_40deb401b9ffe8e1df2f1cc5ba48_1777791019741.jpg";
+import motherCake2 from "@assets/Screenshot_2026-05-03-12-19-31-11_40deb401b9ffe8e1df2f1cc5ba48_1777791019776.jpg";
+import motherCake3 from "@assets/Screenshot_2026-05-03-12-19-43-76_40deb401b9ffe8e1df2f1cc5ba48_1777791019824.jpg";
 import locationStrip from "@assets/IMG_20260503_121418_1777790767862.jpg";
 
 const wa = (msg: string) =>
@@ -24,34 +27,34 @@ const wa = (msg: string) =>
 const DEFAULT_ORDER_MSG = "Hi, I want to order a cake 🎂";
 
 const CATEGORIES = [
-  { label: "Mother's Day", img: cakePinkLove },
-  { label: "Anniversary", img: cakeLoveCouple },
-  { label: "Birthday", img: cakeBlueBirthday },
-  { label: "Mango Cakes", img: cakeButterscotch },
+  { label: "Mother's Day", img: motherCake1, href: "/menu?category=mothers-day" },
+  { label: "Anniversary", img: cakeLoveCouple, href: "/menu?category=love" },
+  { label: "Birthday", img: cakeBlueBirthday, href: "/menu?category=birthday" },
+  { label: "Mango Cakes", img: cakeButterscotch, href: "/menu?category=fruit" },
 ];
 
 const PRODUCTS = [
-  { name: "Chocolate Truffle Cake",  min: 399,  max: 1199, image: cakeChocolateTruffle },
-  { name: "Black Forest Cake",        min: 519,  max: 1499, image: cakeBlackForest },
-  { name: "Pink Love Drip Cake",      min: 959,  max: 2199, image: cakePinkLove },
-  { name: "Heart Shape Cake",         min: 1199, max: 2499, image: cakeHeartBirthday },
-  { name: "Wife Special Cake",        min: 1199, max: 2499, image: cakeWife },
-  { name: "Couple Hug Cake",          min: 959,  max: 2199, image: cakeCoupleHug },
-  { name: "Blue Floral Birthday",     min: 1199, max: 2499, image: cakeBlueBirthday },
-  { name: "I Love You Cake",          min: 799,  max: 1799, image: cakeLoveCouple },
-  { name: "Couple Theme Cake",        min: 959,  max: 2199, image: cakeCoupleRound },
-  { name: "Princess Theme Cake",      min: 959,  max: 2199, image: cakePrincess },
-  { name: "Red Velvet Premium",       min: 679,  max: 1599, image: cakeRedVelvet },
-  { name: "Butterscotch Crunch",      min: 579,  max: 1399, image: cakeButterscotch },
-  { name: "Oreo Cookie Cake",         min: 399,  max: 1199, image: cakeOreo },
-  { name: "Strawberry Fresh Cake",    min: 799,  max: 1799, image: cakeStrawberry },
+  { name: "Super Mom Mango Photo Cake", min: 1575, max: 1575, image: motherCake1 },
+  { name: "Customised Chocolate Photo Cake For Mom", min: 475, max: 475, image: motherCake2 },
+  { name: "The Bloom, Bake & Keepsake Box for Mom", min: 1499, max: 1499, image: motherCake3 },
+  { name: "Chocolate Cream Best Mom Ever Eggless Cake", min: 649, max: 649, image: motherCake2 },
+  { name: "Best Mum Eggless Chocolate Cream Cake", min: 675, max: 675, image: motherCake1 },
+  { name: "Mother's Day Mango Celebration Eggless Cake", min: 1475, max: 1475, image: motherCake3 },
+  { name: "Sweet Chocolate Thank You Bento Cake", min: 599, max: 599, image: motherCake1 },
+  { name: "Butterscotch Eggless Cream Cake For Mom", min: 975, max: 975, image: motherCake3 },
+  { name: "Mango Lush Eggless Cream Cake", min: 2299, max: 2299, image: motherCake2 },
+  { name: "Creamy Mango Delight Cake", min: 849, max: 849, image: motherCake1 },
+  { name: "Mango Celebration Mom Cake", min: 1199, max: 1199, image: motherCake2 },
+  { name: "Happy Mom Floral Photo Cake", min: 1599, max: 1599, image: motherCake3 },
+  { name: "Chocolate Heart Mom Cake", min: 899, max: 899, image: motherCake1 },
+  { name: "Rose Flower Mom Cake", min: 999, max: 999, image: motherCake2 },
 ];
 
 const TRUST_BADGES = [
-  { Icon: BadgeCheck,  title: "100% Smile Guaranteed",  desc: "Unique Products – On time Delivery" },
+  { Icon: BadgeCheck, title: "100% Smile Guaranteed", desc: "Unique Products – On time Delivery" },
   { Icon: ShieldCheck, title: "Safe & Secure Payments", desc: "UPI, Cash on Delivery & Cards" },
-  { Icon: Truck,       title: "100% Purchase Protection", desc: "Assured Quality, Fresh Daily" },
-  { Icon: Clock,       title: "Timely Delivery",        desc: "60–90 min slots in Arrah" },
+  { Icon: Truck, title: "100% Purchase Protection", desc: "Assured Quality, Fresh Daily" },
+  { Icon: Clock, title: "Timely Delivery", desc: "60–90 min slots in Arrah" },
 ];
 
 export default function Home() {
@@ -78,7 +81,7 @@ export default function Home() {
       <div className="mt-8 px-4">
         <div className="flex gap-4 overflow-x-auto pb-2" style={{ scrollbarWidth: "none" }}>
           {CATEGORIES.map((c) => (
-            <Link key={c.label} href="/menu">
+            <Link key={c.label} href={c.href}>
               <div className="flex-shrink-0 w-[110px] text-center">
                 <div className="w-[110px] h-[110px] rounded-[26px] overflow-hidden shadow-sm bg-white">
                   <img src={c.img} alt={c.label} className="w-full h-full object-cover" loading="lazy" />
@@ -93,7 +96,7 @@ export default function Home() {
       </div>
 
       <div className="pt-10 pb-4 px-4 text-center">
-        <h2 className="text-xl font-extrabold text-[#5a2e1f] tracking-tight">Our Signature Cakes</h2>
+        <h2 className="text-xl font-extrabold text-[#5a2e1f] tracking-tight">Mother's Day Cakes</h2>
         <div className="w-12 h-0.5 bg-[#b8893a] mx-auto mt-2"></div>
       </div>
 
