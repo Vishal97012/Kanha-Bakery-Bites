@@ -6,15 +6,6 @@ import { getProductBySlug, getRelatedProducts, ALL_PRODUCTS } from "@/lib/produc
 const wa = (msg: string) =>
   `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`;
 
-function getWeightPrices(min: number) {
-  return [
-    { label: "500g", price: min },
-    { label: "1 Kg", price: Math.round(min * 1.8) },
-    { label: "1.5 Kg", price: Math.round(min * 2.5) },
-    { label: "2 Kg", price: Math.round(min * 3.0) },
-  ];
-}
-
 export default function CakeDetail({ params }: { params: { slug: string } }) {
   const [, navigate] = useLocation();
   const product = getProductBySlug(params.slug);
@@ -36,7 +27,6 @@ export default function CakeDetail({ params }: { params: { slug: string } }) {
 
   const mrp = Math.round(product.min / 0.9);
   const savings = mrp - product.min;
-  const weightPrices = getWeightPrices(product.min);
   const related = getRelatedProducts(product, 4);
 
   return (
@@ -107,29 +97,6 @@ export default function CakeDetail({ params }: { params: { slug: string } }) {
             </span>
           ))}
         </div>
-      </div>
-
-      <div className="mx-4 mt-6">
-        <h2 className="text-sm font-extrabold text-[#5a2e1f] mb-3">Weight & Price</h2>
-        <div className="grid grid-cols-4 gap-2">
-          {weightPrices.map((w) => (
-            <a
-              key={w.label}
-              href={wa(
-                `Hi, I want to order *${product.name}* 🎂\n\n*Weight: ${w.label}*\nPrice: ₹${w.price}\n\nPlease confirm availability.`
-              )}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="bg-white border border-[#e8dccc] rounded-xl p-3 text-center active:scale-95 transition-transform hover:border-[#5a2e1f] hover:shadow-sm"
-            >
-              <div className="text-[12px] font-bold text-[#5a2e1f]">{w.label}</div>
-              <div className="text-[11px] text-[#b8893a] font-bold mt-1">₹{w.price.toLocaleString()}</div>
-            </a>
-          ))}
-        </div>
-        <p className="text-[10px] text-[#6a5a4d] mt-2 text-center">
-          Tap a weight to order that size directly on WhatsApp
-        </p>
       </div>
 
       <div className="mx-4 mt-6">
