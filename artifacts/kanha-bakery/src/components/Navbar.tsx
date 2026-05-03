@@ -41,7 +41,7 @@ export default function Navbar() {
           </div>
         </Link>
 
-        <div className="flex items-center gap-1">
+        <div className="hidden md:flex items-center gap-1">
           {links.map((l) => (
             <Link key={l.href} href={l.href}>
               <span
@@ -57,16 +57,36 @@ export default function Navbar() {
           ))}
         </div>
 
-        <Link href="/cart">
-          <button className="relative p-2 rounded-xl bg-[#5a2e1f]/10 text-[#5a2e1f]">
-            <ShoppingCart size={20} />
-            {cartCount > 0 && (
-              <span className="absolute -top-1 -right-1 bg-[#5a2e1f] text-white text-xs w-5 h-5 rounded-full flex items-center justify-center font-bold">
-                {cartCount}
+        <div className="hidden md:block">
+          <Link href="/cart">
+            <button className="relative p-2 rounded-xl bg-[#5a2e1f]/10 text-[#5a2e1f]">
+              <ShoppingCart size={20} />
+              {cartCount > 0 && (
+                <span className="absolute -top-1 -right-1 bg-[#5a2e1f] text-white text-xs w-5 h-5 rounded-full flex items-center justify-center font-bold">
+                  {cartCount}
+                </span>
+              )}
+            </button>
+          </Link>
+        </div>
+      </div>
+
+      <div className="md:hidden border-t border-[#e8dccc] bg-white px-3 py-2">
+        <div className="grid grid-cols-4 gap-2">
+          {links.map((l) => (
+            <Link key={l.href} href={l.href}>
+              <span
+                className={`block text-center rounded-2xl px-2 py-2 text-[11px] font-semibold transition-colors ${
+                  isActive(l.href)
+                    ? "bg-[#5a2e1f] text-white"
+                    : "bg-[#f5ece0] text-[#5a2e1f]"
+                }`}
+              >
+                {l.label}
               </span>
-            )}
-          </button>
-        </Link>
+            </Link>
+          ))}
+        </div>
       </div>
     </nav>
   );
