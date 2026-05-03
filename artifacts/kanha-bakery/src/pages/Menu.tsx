@@ -78,9 +78,6 @@ function CakeCard({ item }: { item: (typeof ALL_PRODUCTS)[number] }) {
           <div className="absolute bottom-2 right-2 bg-white/95 text-[#5a2e1f] text-[10px] font-bold px-2 py-1 rounded-full shadow">
             10% OFF
           </div>
-          <div className="absolute bottom-2 left-2 bg-black/55 text-white text-[9px] font-semibold px-1.5 py-0.5 rounded-full">
-            1 Kg
-          </div>
         </div>
         <div className="p-3 text-center">
           <div className="font-semibold text-[13px] text-[#5a2e1f] leading-snug min-h-[34px] flex items-center justify-center">
