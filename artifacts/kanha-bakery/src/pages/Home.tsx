@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { Link } from "wouter";
 import { ShieldCheck, Clock, BadgeCheck, Truck, ChevronRight, MapPin } from "lucide-react";
 import { WHATSAPP_NUMBER } from "@/lib/cart";
@@ -42,6 +42,7 @@ const wa = (msg: string) =>
   `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`;
 
 const DEFAULT_ORDER_MSG = "Hi, I want to order a cake 🎂";
+const DEFAULT_CAKE_DESC = "Fresh, soft aur premium homemade cake. WhatsApp pe order karo aur details lo.";
 
 type Category = "all" | "mothers-day" | "anniversary" | "birthday" | "mango";
 
@@ -79,44 +80,45 @@ const ALL_PRODUCTS: {
   image: string;
   category: Category;
   badge?: string;
+  desc: string;
 }[] = [
-  { name: "Mother Special Rose Drip Cake", min: 2200, max: 2200, image: motherCake1, category: "mothers-day", badge: "💐 Mom Special" },
-  { name: "Mother Special Flower Square Cake", min: 2299, max: 2299, image: motherCake2, category: "mothers-day" },
-  { name: "Heart Shape Mom Cake", min: 2500, max: 2500, image: motherCake3, category: "mothers-day" },
-  { name: "Red Velvet Mom Special", min: 1600, max: 1600, image: motherCake4, category: "mothers-day" },
-  { name: "Doll Cake Strawberry", min: 2000, max: 2000, image: motherCake5, category: "mothers-day" },
-  { name: "Vanilla Floral Cake", min: 1500, max: 1500, image: motherCake6, category: "mothers-day" },
-  { name: "Vanilla Mom Special Cake", min: 1200, max: 1200, image: motherCake7, category: "mothers-day" },
-  { name: "Vanilla Floral Rosette Cake", min: 1600, max: 1600, image: motherCake8, category: "mothers-day" },
-  { name: "Chocolate Drip Mom Cake", min: 2200, max: 2200, image: motherCake9, category: "mothers-day" },
+  { name: "Mother Special Rose Drip Cake", min: 2200, max: 2200, image: motherCake1, category: "mothers-day", badge: "💐 Mom Special", desc: "Rose drip design ke saath premium Mother’s Day cake. Soft sponge aur beautiful floral finish." },
+  { name: "Mother Special Flower Square Cake", min: 2299, max: 2299, image: motherCake2, category: "mothers-day", desc: "Square floral cake jo Mom ke special day ko elegant bana de. Fresh cream finish." },
+  { name: "Heart Shape Mom Cake", min: 2500, max: 2500, image: motherCake3, category: "mothers-day", desc: "Heart-shaped romantic cake for Mom. Perfect gifting choice with premium look." },
+  { name: "Red Velvet Mom Special", min: 1600, max: 1600, image: motherCake4, category: "mothers-day", desc: "Classic red velvet cake with rich cream layers and smooth homemade taste." },
+  { name: "Doll Cake Strawberry", min: 2000, max: 2000, image: motherCake5, category: "mothers-day", desc: "Strawberry doll cake with attractive look, ideal for a sweet celebration." },
+  { name: "Vanilla Floral Cake", min: 1500, max: 1500, image: motherCake6, category: "mothers-day", desc: "Light vanilla floral cake with soft taste and pretty decorative finish." },
+  { name: "Vanilla Mom Special Cake", min: 1200, max: 1200, image: motherCake7, category: "mothers-day", desc: "Simple, fresh aur soft vanilla cake for Mom’s loving celebration." },
+  { name: "Vanilla Floral Rosette Cake", min: 1600, max: 1600, image: motherCake8, category: "mothers-day", desc: "Rosette flower decoration ke saath cream-filled vanilla special cake." },
+  { name: "Chocolate Drip Mom Cake", min: 2200, max: 2200, image: motherCake9, category: "mothers-day", desc: "Chocolate drip cake with rich taste and premium Mother’s Day presentation." },
 
-  { name: "Heart Shape Cake", min: 1199, max: 2499, image: cakeHeartBirthday, category: "anniversary" },
-  { name: "I Love You Cake", min: 799, max: 1799, image: cakeILoveYou, category: "anniversary" },
-  { name: "Couple Theme Round Cake", min: 959, max: 2199, image: cakeCoupleRound, category: "anniversary" },
-  { name: "Couple Hug Cake", min: 959, max: 2199, image: cakeCoupleHug, category: "anniversary" },
+  { name: "Heart Shape Cake", min: 1199, max: 2499, image: cakeHeartBirthday, category: "anniversary", desc: "Romantic heart cake for anniversaries and love celebrations." },
+  { name: "I Love You Cake", min: 799, max: 1799, image: cakeILoveYou, category: "anniversary", desc: "Cute love message cake for couples and special moments." },
+  { name: "Couple Theme Round Cake", min: 959, max: 2199, image: cakeCoupleRound, category: "anniversary", desc: "Elegant couple-themed round cake with lovely celebration style." },
+  { name: "Couple Hug Cake", min: 959, max: 2199, image: cakeCoupleHug, category: "anniversary", desc: "Warm couple hug cake for anniversary and romantic gifting." },
 
-  { name: "Blue Floral Birthday Cake", min: 1199, max: 2499, image: cakeBlueBirthday, category: "birthday", badge: "🎉 Popular" },
-  { name: "Mickey Mouse Cake", min: 959, max: 2199, image: cakeMickey, category: "birthday" },
-  { name: "Princess Theme Cake", min: 959, max: 2199, image: cakePrincess, category: "birthday" },
+  { name: "Blue Floral Birthday Cake", min: 1199, max: 2499, image: cakeBlueBirthday, category: "birthday", badge: "🎉 Popular", desc: "Bright birthday cake with floral design and premium cream finish." },
+  { name: "Mickey Mouse Cake", min: 959, max: 2199, image: cakeMickey, category: "birthday", desc: "Fun kids cake with Mickey theme for joyful birthday parties." },
+  { name: "Princess Theme Cake", min: 959, max: 2199, image: cakePrincess, category: "birthday", desc: "Pretty princess theme cake for little girls’ birthday celebration." },
 
-  { name: "Mango Delight Cake", min: 599, max: 1399, image: cakeMango, category: "mango", badge: "🥭 Seasonal" },
-  { name: "Butterscotch Crunch", min: 579, max: 1399, image: cakeButterscotch, category: "mango" },
-  { name: "Pineapple Fresh Cake", min: 1199, max: 2499, image: cakePineapple, category: "mango" },
+  { name: "Mango Delight Cake", min: 599, max: 1399, image: cakeMango, category: "mango", badge: "🥭 Seasonal", desc: "Fresh mango flavor cake with fruity taste and seasonal vibes." },
+  { name: "Butterscotch Crunch", min: 579, max: 1399, image: cakeButterscotch, category: "mango", desc: "Crunchy butterscotch cake with rich caramel-like homemade taste." },
+  { name: "Pineapple Fresh Cake", min: 1199, max: 2499, image: cakePineapple, category: "mango", desc: "Soft pineapple cake with light cream and fresh fruity flavor." },
 
-  { name: "Chocolate Truffle Cake", min: 399, max: 1199, image: cakeChocolateTruffle, category: "all", badge: "⭐ Best Seller" },
-  { name: "Black Forest Cake", min: 519, max: 1499, image: cakeBlackForest, category: "all" },
-  { name: "Red Velvet Cake", min: 679, max: 1599, image: cakeRedVelvet, category: "all" },
-  { name: "Oreo Cookie Cake", min: 399, max: 1199, image: cakeOreo, category: "all" },
-  { name: "KitKat Chocolate Cake", min: 679, max: 1599, image: cakeKitKat, category: "all" },
-  { name: "Coffee Mocha Cake", min: 599, max: 1399, image: cakeCoffee, category: "all" },
-  { name: "Caramel Drip Cake", min: 639, max: 1499, image: cakeCaramel, category: "all" },
-  { name: "White Forest Cake", min: 639, max: 1499, image: cakeWhiteForest, category: "all" },
-  { name: "Vanilla Cream Cake", min: 439, max: 999, image: cakeVanilla, category: "all" },
-  { name: "Strawberry Fresh Cake", min: 799, max: 1799, image: cakeStrawberry, category: "all" },
-  { name: "Blueberry Cream Cake", min: 799, max: 1799, image: cakeBlueberry, category: "all" },
-  { name: "Pink Love Drip Cake", min: 959, max: 2199, image: cakePinkLove, category: "all" },
-  { name: "Rose Cream Cake", min: 719, max: 1799, image: cakeRose, category: "all" },
-  { name: "Wife Special Cake", min: 1199, max: 2499, image: cakeWife, category: "all" },
+  { name: "Chocolate Truffle Cake", min: 399, max: 1199, image: cakeChocolateTruffle, category: "all", badge: "⭐ Best Seller", desc: "Rich chocolate truffle cake with soft layers and premium taste." },
+  { name: "Black Forest Cake", min: 519, max: 1499, image: cakeBlackForest, category: "all", desc: "Classic black forest cake with fresh cream and chocolate shavings." },
+  { name: "Red Velvet Cake", min: 679, max: 1599, image: cakeRedVelvet, category: "all", desc: "Smooth red velvet cake with creamy layers and elegant finish." },
+  { name: "Oreo Cookie Cake", min: 399, max: 1199, image: cakeOreo, category: "all", desc: "Oreo lovers’ cake with cookie crunch and creamy filling." },
+  { name: "KitKat Chocolate Cake", min: 679, max: 1599, image: cakeKitKat, category: "all", desc: "Chocolate cake with KitKat decoration for a fun premium look." },
+  { name: "Coffee Mocha Cake", min: 599, max: 1399, image: cakeCoffee, category: "all", desc: "Coffee mocha cake with balanced flavor for adult celebrations." },
+  { name: "Caramel Drip Cake", min: 639, max: 1499, image: cakeCaramel, category: "all", desc: "Sweet caramel drip cake with glossy premium decoration." },
+  { name: "White Forest Cake", min: 639, max: 1499, image: cakeWhiteForest, category: "all", desc: "Soft white forest cake with cream and cherry-style presentation." },
+  { name: "Vanilla Cream Cake", min: 439, max: 999, image: cakeVanilla, category: "all", desc: "Simple vanilla cream cake for everyday celebrations." },
+  { name: "Strawberry Fresh Cake", min: 799, max: 1799, image: cakeStrawberry, category: "all", desc: "Fresh strawberry cake with fruity taste and soft texture." },
+  { name: "Blueberry Cream Cake", min: 799, max: 1799, image: cakeBlueberry, category: "all", desc: "Blueberry cream cake with vibrant look and light sweetness." },
+  { name: "Pink Love Drip Cake", min: 959, max: 2199, image: cakePinkLove, category: "all", desc: "Pink drip cake made for romantic and cute special occasions." },
+  { name: "Rose Cream Cake", min: 719, max: 1799, image: cakeRose, category: "all", desc: "Rose cream cake with floral decoration and soft homemade taste." },
+  { name: "Wife Special Cake", min: 1199, max: 2499, image: cakeWife, category: "all", desc: "Special surprise cake for wife with pretty and loving presentation." },
 ];
 
 const TRUST_BADGES = [
@@ -136,8 +138,10 @@ const SECTION_TITLES: Record<Category, string> = {
 
 export default function Home() {
   const [active, setActive] = useState<Category>("all");
+  const [selectedCake, setSelectedCake] = useState<(typeof ALL_PRODUCTS)[number] | null>(null);
   const shown = active === "all" ? ALL_PRODUCTS : ALL_PRODUCTS.filter((p) => p.category === active);
   const activeCat = CATEGORIES.find((c) => c.key === active);
+  const selectedCakeOrderMsg = useMemo(() => (selectedCake ? `Hi, I want to order *${selectedCake.name}* 🎂\n\n${selectedCake.desc}\n\nPlease share weight options & availability.` : DEFAULT_ORDER_MSG), [selectedCake]);
 
   return (
     <div className="max-w-lg mx-auto pb-24 relative bg-[#fdf8f3]">
@@ -198,18 +202,42 @@ export default function Home() {
 
       <div className="px-4 grid grid-cols-2 gap-4">
         {shown.map((p) => (
-          <a key={p.name} href={wa(`Hi, I want to order *${p.name}* 🎂\n\nPlease share weight options & availability.`)} target="_blank" rel="noopener noreferrer" className="bg-white rounded-xl overflow-hidden shadow-sm border border-[#e8dccc] active:scale-[0.98] transition-transform">
+          <button
+            key={p.name}
+            onClick={() => setSelectedCake(p)}
+            className="bg-white rounded-xl overflow-hidden shadow-sm border border-[#e8dccc] active:scale-[0.98] transition-transform text-left"
+          >
             <div className="relative aspect-square overflow-hidden bg-[#fdf8f3]">
               <img src={p.image} alt={`${p.name} – Kanha Home Bakery Arrah Bihar`} loading="lazy" className="w-full h-full object-cover" />
               {p.badge && <div className="absolute top-2 left-2"><span className="bg-[#5a2e1f] text-white text-[9px] font-bold px-2 py-0.5 rounded-full shadow">{p.badge}</span></div>}
+              <div className="absolute bottom-2 right-2 bg-white/95 text-[#5a2e1f] text-[10px] font-bold px-2 py-1 rounded-full shadow">10% OFF</div>
             </div>
             <div className="p-3 text-center">
               <div className="font-semibold text-[13px] text-[#5a2e1f] leading-snug min-h-[34px] flex items-center justify-center">{p.name}</div>
-              <div className="text-[#b8893a] font-bold text-sm mt-1.5">₹{p.min.toLocaleString()} – ₹{p.max.toLocaleString()}</div>
+              <div className="text-[#b8893a] font-bold text-sm mt-1.5">₹{p.min.toLocaleString()}</div>
             </div>
-          </a>
+          </button>
         ))}
       </div>
+
+      {selectedCake && (
+        <div className="mx-4 mt-6 bg-white rounded-2xl border border-[#e8dccc] shadow-sm p-4">
+          <div className="flex gap-3">
+            <img src={selectedCake.image} alt={selectedCake.name} className="w-20 h-20 rounded-xl object-cover flex-shrink-0" />
+            <div className="min-w-0 flex-1">
+              <div className="text-sm font-extrabold text-[#5a2e1f]">{selectedCake.name}</div>
+              <div className="text-[11px] text-[#6a5a4d] mt-1 leading-relaxed">{selectedCake.desc}</div>
+              <div className="mt-2 flex items-center gap-2">
+                <div className="text-[#b8893a] font-extrabold">₹{selectedCake.min.toLocaleString()}</div>
+                <div className="text-[10px] font-bold text-[#5a2e1f] bg-[#f5ece0] px-2 py-1 rounded-full">10% OFF</div>
+              </div>
+            </div>
+          </div>
+          <a href={wa(selectedCakeOrderMsg)} target="_blank" rel="noopener noreferrer" className="mt-4 block">
+            <button className="w-full bg-[#25D366] text-white font-bold py-3 rounded-xl shadow active:scale-95 transition-transform">Order on WhatsApp</button>
+          </a>
+        </div>
+      )}
 
       <div className="text-center mt-6 px-4 flex gap-3 justify-center">
         {active !== "all" && <button onClick={() => setActive("all")} className="border-2 border-[#5a2e1f] text-[#5a2e1f] px-6 py-3 rounded-md font-bold text-sm active:scale-95 transition-transform">Show All</button>}
@@ -236,7 +264,7 @@ export default function Home() {
         <p className="text-[11px] text-[#5a2e1f]/60 mt-2">📍 Police Line, M.P. Bagh, Arrah, Bihar – 802301 · 📞 +91 70502 56262</p>
       </div>
 
-      <a href={activeCat ? wa(activeCat.waMsg) : wa(DEFAULT_ORDER_MSG)} target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp" className="fixed bottom-5 right-5 z-50 w-14 h-14 rounded-full bg-[#25D366] text-white shadow-2xl flex items-center justify-center text-2xl active:scale-95 transition-transform hover:scale-105" style={{ boxShadow: "0 8px 24px rgba(37, 211, 102, 0.5)" }}>
+      <a href={selectedCake ? wa(selectedCakeOrderMsg) : activeCat ? wa(activeCat.waMsg) : wa(DEFAULT_ORDER_MSG)} target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp" className="fixed bottom-5 right-5 z-50 w-14 h-14 rounded-full bg-[#25D366] text-white shadow-2xl flex items-center justify-center text-2xl active:scale-95 transition-transform hover:scale-105" style={{ boxShadow: "0 8px 24px rgba(37, 211, 102, 0.5)" }}>
         <span className="absolute inset-0 rounded-full bg-[#25D366] animate-ping opacity-30" />
         <span className="relative">💬</span>
       </a>
