@@ -48,7 +48,7 @@ export default function Cart() {
 
   if (cart.length === 0) {
     return (
-      <div className="max-w-lg mx-auto px-4 pt-20 text-center pb-8 bg-[#fdf8f3] min-h-[70vh]">
+      <div className="max-w-lg mx-auto px-4 pt-20 text-center pb-28 bg-[#fdf8f3] min-h-[70vh]">
         <div className="text-6xl mb-4">🛒</div>
         <h2 className="text-xl font-bold text-[#5a2e1f] mb-2">Your cart is empty</h2>
         <p className="text-[#6a5a4d] mb-6 text-sm">Add some delicious cakes to get started!</p>
@@ -62,7 +62,7 @@ export default function Cart() {
   }
 
   return (
-    <div className="max-w-lg mx-auto px-4 pb-10 bg-[#fdf8f3] min-h-screen">
+    <div className="max-w-lg mx-auto px-4 pb-28 bg-[#fdf8f3] min-h-screen">
       <div className="pt-6 pb-4 flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-extrabold text-[#5a2e1f]">Your Cart</h1>

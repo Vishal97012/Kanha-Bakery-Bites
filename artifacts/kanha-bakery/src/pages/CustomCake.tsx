@@ -86,7 +86,7 @@ export default function CustomCake() {
   const today = new Date().toISOString().split("T")[0];
 
   return (
-    <div className="max-w-lg mx-auto pb-12 bg-[#fdf8f3]">
+    <div className="max-w-lg mx-auto pb-28 bg-[#fdf8f3]">
       <div className="bg-[#fbf8eb] text-[#6d6a3a] px-4 py-4 border-b border-[#efe7c8]">
         <div className="flex items-center gap-3 text-[15px] font-semibold">
           <MapPin size={22} className="flex-shrink-0" />

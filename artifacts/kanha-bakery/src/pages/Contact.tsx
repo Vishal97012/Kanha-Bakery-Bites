@@ -12,7 +12,7 @@ const DELIVERY_AREAS = [
 
 export default function Contact() {
   return (
-    <div className="max-w-lg mx-auto pb-12 bg-[#fdf8f3]">
+    <div className="max-w-lg mx-auto pb-28 bg-[#fdf8f3]">
       <div className="bg-[#5a2e1f] text-white px-4 py-5 rounded-b-[28px] shadow-md mx-4 mt-4 mb-6">
         <div className="flex items-center justify-between gap-4">
           <div>
