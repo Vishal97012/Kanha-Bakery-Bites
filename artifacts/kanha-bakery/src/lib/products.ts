@@ -145,7 +145,7 @@ const raw: Omit<Product, "slug">[] = [
 
   {
     name: "Heart Shape Cake",
-    min: 1199,
+    min: 399,
     image: cakeHeartBirthday,
     category: "anniversary",
     desc: "Romantic heart cake for anniversaries and love celebrations.",
@@ -250,7 +250,7 @@ const raw: Omit<Product, "slug">[] = [
 
   {
     name: "Chocolate Truffle Cake",
-    min: 399,
+    min: 900,
     image: cakeChocolateTruffle,
     category: "all",
     badge: "⭐ Best Seller",
@@ -308,16 +308,6 @@ const raw: Omit<Product, "slug">[] = [
     fullDesc:
       "Coffee lovers ke liye yeh mocha cake ek special treat hai. Rich espresso flavor, smooth mocha cream aur soft coffee-infused sponge ke saath yeh cake ek sophisticated dessert experience deta hai. Office parties, adult birthdays aur corporate gifting ke liye ek excellent choice. Ek sip coffee aur ek bite cake — perfect combo!",
     highlights: ["Coffee Flavor ☕", "Adults Favorite 🎂", "Pure Veg 🌿", "Premium Taste ✨"],
-  },
-  {
-    name: "Caramel Drip Cake",
-    min: 639,
-    image: cakeCaramel,
-    category: "all",
-    desc: "Sweet caramel drip cake with glossy premium decoration.",
-    fullDesc:
-      "Golden caramel drip ke saath decorated yeh cake ek visually stunning masterpiece hai. Rich caramel sauce, soft sponge layers aur glossy drip decoration is cake ko ek premium boutique feel deta hai. Sweet aur slightly salted caramel ka perfect balance ise unique banata hai. Special occasions ke liye ek perfect choice.",
-    highlights: ["Caramel Drip 🍯", "Glossy Finish ✨", "Pure Veg 🌿", "Boutique Look 🎂"],
   },
   {
     name: "White Forest Cake",
