@@ -10,7 +10,6 @@ import cakeOreo from "@assets/IMG-20260326-WA0081_1775751112893.jpg";
 import cakeKitKat from "@assets/IMG-20260331-WA0001_1775751113122.jpg";
 import cakeMango from "@assets/IMG-20260326-WA0079(1)_1775751112826.jpg";
 import cakeCoffee from "@assets/IMG-20260326-WA0080(1)_1775751112856.jpg";
-import cakeCaramel from "@assets/IMG-20260326-WA0080_1775751112873.jpg";
 import cakeRose from "@assets/IMG-20260326-WA0083(1)_1775751112914.jpg";
 import cakeWhiteForest from "@assets/IMG-20260326-WA0088(1)_1775751112981.jpg";
 import cakePrincess from "@assets/IMG-20260331-WA0000_1775751113066.jpg";
