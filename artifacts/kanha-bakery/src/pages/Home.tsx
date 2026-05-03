@@ -86,7 +86,7 @@ const ALL_PRODUCTS: {
   { name: "Red Velvet Mom Special", min: 1600, max: 1600, image: motherCake4, category: "mothers-day" },
   { name: "Doll Cake Strawberry", min: 2000, max: 2000, image: motherCake5, category: "mothers-day" },
   { name: "Vanilla Floral Cake", min: 1500, max: 1500, image: motherCake6, category: "mothers-day" },
-  { name: "Vanilla Cream Cake", min: 1200, max: 1200, image: motherCake7, category: "mothers-day" },
+  { name: "Vanilla Mom Special Cake", min: 1200, max: 1200, image: motherCake7, category: "mothers-day" },
   { name: "Vanilla Floral Rosette Cake", min: 1600, max: 1600, image: motherCake8, category: "mothers-day" },
   { name: "Chocolate Drip Mom Cake", min: 2200, max: 2200, image: motherCake9, category: "mothers-day" },
 
