@@ -1,0 +1,62 @@
+uploads = []
+outputs = []
+
+[[generated]]
+id = "MIiyie3JP2LtGapqc5Pad"
+uri = "file://artifacts/kanha-gifts/src/assets/images/chocolate-bouquet-red.png"
+type = "image"
+title = "Red rose chocolate bouquet"
+
+[[generated]]
+id = "Z-VF6cVLT_wooDvSac6AM"
+uri = "file://artifacts/kanha-gifts/src/assets/images/chocolate-bouquet-pink.png"
+type = "image"
+title = "Pink chocolate bouquet"
+
+[[generated]]
+id = "oVPfTusHltwfNd4GnTFHY"
+uri = "file://artifacts/kanha-gifts/src/assets/images/photo-bouquet-heart.png"
+type = "image"
+title = "Heart photo bouquet"
+
+[[generated]]
+id = "dPDW_Qt6W9kVTGzmCTNQ2"
+uri = "file://artifacts/kanha-gifts/src/assets/images/photo-bouquet-rose.png"
+type = "image"
+title = "Rose photo bouquet"
+
+[[generated]]
+id = "_wK8tVsOT9JHmkifVChWw"
+uri = "file://artifacts/kanha-gifts/src/assets/images/premium-hamper-luxury.png"
+type = "image"
+title = "Luxury gift hamper"
+
+[[generated]]
+id = "Qdhalg_-_MmideT276RE_"
+uri = "file://artifacts/kanha-gifts/src/assets/images/premium-hamper-birthday.png"
+type = "image"
+title = "Birthday surprise hamper"
+
+[[generated]]
+id = "yqjLEIiVoZQweFr0Y0ee2"
+uri = "file://artifacts/kanha-gifts/src/assets/images/couple-gift-set.png"
+type = "image"
+title = "Couple gift set"
+
+[[generated]]
+id = "-BfMM5cUiBVgJNi41kDIN"
+uri = "file://artifacts/kanha-gifts/src/assets/images/couple-surprise-box.png"
+type = "image"
+title = "Couple surprise box"
+
+[[generated]]
+id = "2oWlqZWsOgVkRU2UGSMD4"
+uri = "file://artifacts/kanha-gifts/src/assets/images/cake-gift-combo-basic.png"
+type = "image"
+title = "Cake and bouquet combo"
+
+[[generated]]
+id = "TF3c1lXvpBM3zlwnVMUjF"
+uri = "file://artifacts/kanha-gifts/src/assets/images/cake-gift-combo-premium.png"
+type = "image"
+title = "Premium cake hamper combo"
