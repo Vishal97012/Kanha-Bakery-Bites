@@ -1,11 +1,12 @@
 import { Link, useLocation } from "wouter";
-import { Home, UtensilsCrossed, Cake, Phone, ShoppingCart } from "lucide-react";
+import { Home, UtensilsCrossed, Cake, Phone, ShoppingCart, PartyPopper } from "lucide-react";
 import { useState, useEffect } from "react";
 import { getCart, getCartCount } from "@/lib/cart";
 
 const NAV_ITEMS = [
   { href: "/", label: "Home", Icon: Home },
   { href: "/menu", label: "Menu", Icon: UtensilsCrossed },
+  { href: "/party-orders", label: "Party", Icon: PartyPopper },
   { href: "/custom-cake", label: "Custom", Icon: Cake },
   { href: "/contact", label: "Contact", Icon: Phone },
 ];
@@ -76,7 +77,7 @@ export default function Navbar() {
 
       {/* Mobile bottom tab bar */}
       <nav className="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-white border-t border-[#e8dccc] shadow-[0_-4px_20px_rgba(90,46,31,0.10)]">
-        <div className="grid grid-cols-5 max-w-lg mx-auto">
+        <div className="grid grid-cols-6 max-w-lg mx-auto">
           {NAV_ITEMS.map(({ href, label, Icon }) => {
             const active = isActive(href);
             return (

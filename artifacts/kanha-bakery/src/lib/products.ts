@@ -172,7 +172,7 @@ const raw: Omit<Product, "slug">[] = [
   },
   {
     name: "I Love You Cake",
-    min: 799,
+    min: 349,
     image: cakeILoveYou,
     category: "anniversary",
     desc: "Cute love message cake for couples and special moments.",
@@ -182,7 +182,7 @@ const raw: Omit<Product, "slug">[] = [
   },
   {
     name: "Couple Theme Round Cake",
-    min: 959,
+    min: 349,
     image: cakeCoupleRound,
     category: "anniversary",
     desc: "Elegant couple-themed round cake with lovely celebration style.",
@@ -192,7 +192,7 @@ const raw: Omit<Product, "slug">[] = [
   },
   {
     name: "Couple Hug Cake",
-    min: 959,
+    min: 349,
     image: cakeCoupleHug,
     category: "anniversary",
     desc: "Warm couple hug cake for anniversary and romantic gifting.",
@@ -270,7 +270,7 @@ const raw: Omit<Product, "slug">[] = [
   // ── SIGNATURE / ALL ───────────────────────────────────────────
   {
     name: "Chocolate Truffle Cake",
-    min: 900,
+    min: 399,
     image: cakeChocolateTruffle,
     category: "all",
     badge: "⭐ Best Seller",
@@ -381,7 +381,7 @@ const raw: Omit<Product, "slug">[] = [
   },
   {
     name: "Rose Cream Cake",
-    min: 719,
+    min: 899,
     image: cakeRose,
     category: "all",
     desc: "Rose cream cake with floral decoration and soft homemade taste.",

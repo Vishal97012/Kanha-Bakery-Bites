@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link } from "wouter";
-import { ShieldCheck, Clock, BadgeCheck, Truck, ChevronRight, MapPin } from "lucide-react";
+import { ShieldCheck, Clock, BadgeCheck, Truck, ChevronRight, MapPin, X, Tag } from "lucide-react";
 import { WHATSAPP_NUMBER } from "@/lib/cart";
 import { ALL_PRODUCTS, type Category } from "@/lib/products";
 
@@ -9,6 +9,8 @@ import cakeBlueBirthday from "@assets/IMG-20260409-WA0108_1775753795837.jpg";
 import cakeMango from "@assets/IMG-20260326-WA0079(1)_1775751112826.jpg";
 import motherCake1 from "@assets/FB_IMG_1777552283789_1777802679122.jpg";
 import locationStrip from "@assets/IMG_20260503_121418_1777790767862.jpg";
+import bakeryVideo1 from "@assets/video_20260504_074442_1778140191961.mp4";
+import bakeryVideo2 from "@assets/video_20260504_090750_1778140192001.mp4";
 
 const wa = (msg: string) =>
   `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`;
@@ -57,10 +59,18 @@ const SECTION_TITLES: Record<Category, string> = {
   mango: "Mango & Fruit Cakes 🥭",
 };
 
+const BUDGET_CAKES = ALL_PRODUCTS.filter((p) => p.min <= 800).slice(0, 4);
+
 export default function Home() {
   const [active, setActive] = useState<Category>("all");
+  const [showPopup, setShowPopup] = useState(false);
   const shown = active === "all" ? ALL_PRODUCTS : ALL_PRODUCTS.filter((p) => p.category === active);
   const activeCat = CATEGORIES.find((c) => c.key === active);
+
+  useEffect(() => {
+    const t = setTimeout(() => setShowPopup(true), 2500);
+    return () => clearTimeout(t);
+  }, []);
 
   return (
     <div className="max-w-lg mx-auto pb-24 relative bg-[#fdf8f3]">
@@ -79,6 +89,43 @@ export default function Home() {
             <div className="text-[15px] mt-1.5 opacity-90">On orders above ₹499 in Arrah.</div>
           </div>
           <div className="text-[52px] leading-none select-none">🚚</div>
+        </div>
+      </div>
+
+      {/* ── VIDEO SECTION ─────────────────────────────────────── */}
+      <div className="px-4 mt-8">
+        <div className="text-center mb-4">
+          <h2 className="text-lg font-extrabold text-[#5a2e1f]">🎬 Hamari Bakery Dekho</h2>
+          <p className="text-xs text-[#5a2e1f]/60 mt-1">Fresh cakes, real love — ghar mein banaya jaata hai</p>
+        </div>
+        <div className="grid grid-cols-2 gap-3">
+          <div className="rounded-2xl overflow-hidden shadow-md border border-[#e8dccc] bg-black aspect-[9/16]">
+            <video
+              src={bakeryVideo1}
+              className="w-full h-full object-cover"
+              autoPlay
+              muted
+              loop
+              playsInline
+              controls={false}
+            />
+          </div>
+          <div className="rounded-2xl overflow-hidden shadow-md border border-[#e8dccc] bg-black aspect-[9/16]">
+            <video
+              src={bakeryVideo2}
+              className="w-full h-full object-cover"
+              autoPlay
+              muted
+              loop
+              playsInline
+              controls={false}
+            />
+          </div>
+        </div>
+        <div className="mt-3 bg-[#f5ece0] rounded-xl px-4 py-3 text-center">
+          <p className="text-xs text-[#5a2e1f]/80 font-medium">
+            ✅ Pure Veg · 🏠 Homemade · 🚚 Fresh Daily Delivery
+          </p>
         </div>
       </div>
 
@@ -213,17 +260,65 @@ export default function Home() {
         </p>
       </div>
 
+      {/* WhatsApp Floating Button */}
       <a
         href={activeCat ? wa(activeCat.waMsg) : wa(DEFAULT_ORDER_MSG)}
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Chat on WhatsApp"
-        className="fixed bottom-5 right-5 z-50 w-14 h-14 rounded-full bg-[#25D366] text-white shadow-2xl flex items-center justify-center text-2xl active:scale-95 transition-transform hover:scale-105"
+        className="fixed bottom-20 right-5 z-50 w-14 h-14 rounded-full bg-[#25D366] text-white shadow-2xl flex items-center justify-center text-2xl active:scale-95 transition-transform hover:scale-105"
         style={{ boxShadow: "0 8px 24px rgba(37, 211, 102, 0.5)" }}
       >
         <span className="absolute inset-0 rounded-full bg-[#25D366] animate-ping opacity-30" />
         <span className="relative">💬</span>
       </a>
+
+      {/* ── BUDGET CAKES POPUP ────────────────────────────────── */}
+      {showPopup && (
+        <div
+          className="fixed bottom-20 left-0 right-0 z-40 px-3 animate-in slide-in-from-bottom-4 duration-500"
+          style={{ animation: "slideUp 0.4s ease-out" }}
+        >
+          <div className="max-w-lg mx-auto bg-white rounded-2xl shadow-2xl border border-[#e8dccc] overflow-hidden"
+            style={{ boxShadow: "0 -4px 32px rgba(90,46,31,0.18)" }}>
+            {/* Header */}
+            <div className="bg-[#5a2e1f] text-white px-4 py-3 flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <Tag size={16} />
+                <span className="font-extrabold text-sm">🎉 Budget Cakes from ₹349!</span>
+              </div>
+              <button
+                onClick={() => setShowPopup(false)}
+                className="p-1 rounded-full hover:bg-white/20 transition-colors"
+              >
+                <X size={16} />
+              </button>
+            </div>
+
+            {/* Cake Thumbnails */}
+            <div className="px-4 py-3">
+              <p className="text-xs text-[#5a2e1f]/70 mb-3">Fresh daily · Pure veg · Doorstep delivery 🚚</p>
+              <div className="flex gap-2 overflow-x-auto pb-1" style={{ scrollbarWidth: "none" }}>
+                {BUDGET_CAKES.map((p) => (
+                  <Link key={p.slug} href={`/cake/${p.slug}`} onClick={() => setShowPopup(false)}>
+                    <div className="flex-shrink-0 w-[72px] cursor-pointer">
+                      <div className="w-[72px] h-[72px] rounded-xl overflow-hidden border border-[#e8dccc]">
+                        <img src={p.image} alt={p.name} className="w-full h-full object-cover" />
+                      </div>
+                      <div className="text-[#b8893a] font-bold text-[10px] text-center mt-1">₹{p.min}</div>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+              <Link href="/menu" onClick={() => setShowPopup(false)}>
+                <button className="w-full mt-3 bg-[#5a2e1f] text-white font-bold text-sm py-3 rounded-xl active:scale-95 transition-transform">
+                  Sabhi Saste Cakes Dekho →
+                </button>
+              </Link>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
