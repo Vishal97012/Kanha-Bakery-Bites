@@ -81,8 +81,12 @@ export default function ProductDetail() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.55 }}
           >
-            <div className={`relative rounded-3xl overflow-hidden aspect-square bg-gradient-to-br ${product.gradient} flex items-center justify-center shadow-2xl`}>
-              <span className="text-[10rem] select-none drop-shadow-2xl">{product.icon}</span>
+            <div className="relative rounded-3xl overflow-hidden aspect-square shadow-2xl bg-secondary">
+              <img
+                src={product.photo}
+                alt={product.name}
+                className="w-full h-full object-cover"
+              />
               <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
               <div className="absolute bottom-5 left-5 right-5">
                 <span className={`inline-block text-xs font-bold px-3 py-1.5 rounded-full shadow-lg ${BADGE_COLORS[product.badge] ?? "bg-primary/10 text-primary"}`}>

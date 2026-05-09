@@ -1,0 +1,47 @@
+{
+  "name": "Kanha Gifts",
+  "short_name": "Kanha Gifts",
+  "description": "Best gift shop in Arrah Bihar. Chocolate bouquets, photo bouquets, premium hampers and couple gifts with same day delivery.",
+  "start_url": "/kanha-gifts/",
+  "scope": "/kanha-gifts/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#fdf6ef",
+  "theme_color": "#7a2235",
+  "lang": "en-IN",
+  "categories": ["shopping", "lifestyle"],
+  "icons": [
+    {
+      "src": "/kanha-gifts/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/kanha-gifts/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/kanha-gifts/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "All Gifts",
+      "short_name": "Gifts",
+      "url": "/kanha-gifts/products",
+      "icons": [{ "src": "/kanha-gifts/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Custom Gift",
+      "short_name": "Custom",
+      "url": "/kanha-gifts/custom-gift",
+      "icons": [{ "src": "/kanha-gifts/icon-192.png", "sizes": "192x192" }]
+    }
+  ]
+}

@@ -32,19 +32,21 @@ export default function ProductCard({ product }: ProductCardProps) {
     <div
       data-testid={`card-product-${product.slug}`}
       onClick={() => setLocation(`/product/${product.slug}`)}
-      className="group bg-card border border-card-border rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 cursor-pointer hover:-translate-y-1"
+      className="group bg-card border border-card-border rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 cursor-pointer hover:-translate-y-1.5"
     >
-      {/* Image area */}
-      <div className={`relative h-52 bg-gradient-to-br ${product.gradient} flex items-center justify-center overflow-hidden`}>
-        <span className="text-7xl opacity-80 group-hover:scale-110 transition-transform duration-500 select-none">
-          {product.icon}
-        </span>
+      {/* Photo */}
+      <div className="relative h-52 overflow-hidden bg-secondary">
+        <img
+          src={product.photo}
+          alt={product.name}
+          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+        />
         {product.badge && (
-          <span className={`absolute top-3 left-3 text-[10px] font-bold px-2.5 py-1 rounded-full shadow ${BADGE_COLORS[product.badge] ?? "bg-primary text-primary-foreground"}`}>
+          <span className={`absolute top-3 left-3 text-[10px] font-bold px-2.5 py-1 rounded-full shadow-lg ${BADGE_COLORS[product.badge] ?? "bg-primary text-primary-foreground"}`}>
             {product.badge}
           </span>
         )}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent" />
       </div>
 
       {/* Info */}

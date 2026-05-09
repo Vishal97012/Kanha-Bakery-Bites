@@ -9,6 +9,7 @@ import Products from "@/pages/Products";
 import ProductDetail from "@/pages/ProductDetail";
 import CustomGift from "@/pages/CustomGift";
 import Cart from "@/pages/Cart";
+import Contact from "@/pages/Contact";
 import NotFound from "@/pages/not-found";
 
 import Navbar from "@/components/Navbar";
@@ -28,6 +29,7 @@ function Router() {
           <Route path="/product/:slug" component={ProductDetail} />
           <Route path="/custom-gift" component={CustomGift} />
           <Route path="/cart" component={Cart} />
+          <Route path="/contact" component={Contact} />
           <Route component={NotFound} />
         </Switch>
       </main>

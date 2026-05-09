@@ -28,6 +28,7 @@ export default function Footer() {
                 { href: "/", label: "Home" },
                 { href: "/products", label: "All Gifts" },
                 { href: "/custom-gift", label: "Custom Gift" },
+                { href: "/contact", label: "Contact" },
                 { href: "/cart", label: "Cart" },
               ].map((l) => (
                 <li key={l.href}>

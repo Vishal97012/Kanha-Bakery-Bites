@@ -1,14 +1,14 @@
 import { Link } from "wouter";
 import { motion } from "framer-motion";
 import { ShoppingBag, Truck, Clock, Shield, Star, Gift, ChevronRight } from "lucide-react";
-import { PRODUCTS, WA_URL, type Category } from "@/lib/products";
+import { PRODUCTS, WA_URL, type Category, getProductBySlug } from "@/lib/products";
 import ProductCard from "@/components/ProductCard";
 
 const CATEGORIES = [
-  { key: "chocolate-bouquet" as Category, label: "Chocolate Bouquets", icon: "🍫", desc: "Handcrafted chocolate arrangements" },
-  { key: "photo-bouquet" as Category, label: "Photo Bouquets", icon: "📸", desc: "Memories wrapped in roses" },
-  { key: "hamper" as Category, label: "Premium Hampers", icon: "🎁", desc: "Curated luxury gift boxes" },
-  { key: "couple" as Category, label: "Couple Gifts", icon: "💝", desc: "Celebrate love together" },
+  { key: "chocolate-bouquet" as Category, label: "Chocolate Bouquets", icon: "🍫", desc: "Handcrafted chocolate arrangements", slug: "chocolate-bouquet-red" },
+  { key: "photo-bouquet" as Category, label: "Photo Bouquets", icon: "📸", desc: "Memories wrapped in roses", slug: "photo-bouquet-heart" },
+  { key: "hamper" as Category, label: "Premium Hampers", icon: "🎁", desc: "Curated luxury gift boxes", slug: "premium-hamper-luxury" },
+  { key: "couple" as Category, label: "Couple Gifts", icon: "💝", desc: "Celebrate love together", slug: "couple-gift-set" },
 ];
 
 const REVIEWS = [
@@ -149,20 +149,35 @@ export default function Home() {
           variants={stagger}
           className="grid grid-cols-2 md:grid-cols-4 gap-4"
         >
-          {CATEGORIES.map((cat) => (
-            <motion.div key={cat.key} variants={fadeUp}>
-              <Link href={`/products?category=${cat.key}`}>
-                <div
-                  data-testid={`card-category-${cat.key}`}
-                  className="group bg-card border border-card-border rounded-2xl p-6 text-center hover:shadow-lg hover:-translate-y-1 transition-all duration-300 cursor-pointer"
-                >
-                  <div className="text-5xl mb-4 group-hover:scale-110 transition-transform duration-300">{cat.icon}</div>
-                  <h3 className="font-serif font-semibold text-foreground text-sm mb-1">{cat.label}</h3>
-                  <p className="text-muted-foreground text-xs">{cat.desc}</p>
-                </div>
-              </Link>
-            </motion.div>
-          ))}
+          {CATEGORIES.map((cat) => {
+            const catProduct = getProductBySlug(cat.slug);
+            return (
+              <motion.div key={cat.key} variants={fadeUp}>
+                <Link href={`/products?category=${cat.key}`}>
+                  <div
+                    data-testid={`card-category-${cat.key}`}
+                    className="group bg-card border border-card-border rounded-2xl overflow-hidden hover:shadow-lg hover:-translate-y-1 transition-all duration-300 cursor-pointer"
+                  >
+                    <div className="relative h-32 overflow-hidden bg-secondary">
+                      {catProduct && (
+                        <img
+                          src={catProduct.photo}
+                          alt={cat.label}
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                        />
+                      )}
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
+                      <span className="absolute bottom-2 left-2 text-2xl">{cat.icon}</span>
+                    </div>
+                    <div className="p-4 text-center">
+                      <h3 className="font-serif font-semibold text-foreground text-sm mb-1">{cat.label}</h3>
+                      <p className="text-muted-foreground text-xs">{cat.desc}</p>
+                    </div>
+                  </div>
+                </Link>
+              </motion.div>
+            );
+          })}
         </motion.div>
       </section>
 
@@ -235,8 +250,8 @@ export default function Home() {
                   data-testid={`card-combo-${product.slug}`}
                   className="group bg-card border border-card-border rounded-3xl overflow-hidden shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 cursor-pointer flex"
                 >
-                  <div className={`w-28 flex-shrink-0 bg-gradient-to-br ${product.gradient} flex items-center justify-center text-4xl`}>
-                    {product.icon}
+                  <div className="w-28 flex-shrink-0 overflow-hidden">
+                    <img src={product.photo} alt={product.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                   </div>
                   <div className="p-5 flex-1">
                     <span className="text-[10px] font-bold bg-amber-100 text-amber-800 rounded-full px-2.5 py-0.5">{product.badge}</span>

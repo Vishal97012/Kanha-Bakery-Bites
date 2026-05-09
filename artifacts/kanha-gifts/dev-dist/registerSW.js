@@ -1,0 +1,1 @@
+if('serviceWorker' in navigator) navigator.serviceWorker.register('/kanha-gifts/dev-sw.js?dev-sw', { scope: '/kanha-gifts/', type: 'classic' })

@@ -1,3 +1,14 @@
+import photoChocolateRed from "@assets/IMG-20260326-WA0090_1775751113041.jpg";
+import photoChocolatePink from "@assets/IMG-20260406-WA0146(1)_1775753795687.jpg";
+import photoPhotoBouquetHeart from "@assets/IMG-20260409-WA0112_1775753795766.jpg";
+import photoPhotoBouquetRose from "@assets/IMG-20260326-WA0083(1)_1775751112914.jpg";
+import photoHamperLuxury from "@assets/FB_IMG_1777552283789_1777802679122.jpg";
+import photoHamperBirthday from "@assets/IMG-20260409-WA0108_1775753795837.jpg";
+import photoCoupleSet from "@assets/IMG-20260409-WA0109_1775753795810.jpg";
+import photoCoupleBox from "@assets/IMG-20260409-WA0110_1775753795743.jpg";
+import photoComboBasic from "@assets/IMG-20260326-WA0078_1775751112788.jpg";
+import photoComboPremuim from "@assets/FB_IMG_1777804964982_1777807043100.jpg";
+
 export type Category = "chocolate-bouquet" | "photo-bouquet" | "hamper" | "couple" | "combo";
 export type Occasion = "Birthday" | "Anniversary" | "Any";
 
@@ -11,6 +22,7 @@ export interface Product {
   desc: string;
   gradient: string;
   icon: string;
+  photo: string;
 }
 
 export const PRODUCTS: Product[] = [
@@ -24,6 +36,7 @@ export const PRODUCTS: Product[] = [
     desc: "12 premium chocolates wrapped in red roses and satin ribbon. A stunning arrangement that combines the finest chocolates with fresh red roses, beautifully presented in a bouquet that impresses at first glance.",
     gradient: "from-rose-900 via-rose-700 to-pink-600",
     icon: "🌹",
+    photo: photoChocolateRed,
   },
   {
     slug: "chocolate-bouquet-pink",
@@ -35,6 +48,7 @@ export const PRODUCTS: Product[] = [
     desc: "Soft pink theme with Dairy Milk and Ferrero chocolates. Gentle pinks and warm gold tones make this bouquet a romantic favourite for anniversaries and special days.",
     gradient: "from-pink-800 via-rose-600 to-pink-400",
     icon: "🌸",
+    photo: photoChocolatePink,
   },
   {
     slug: "photo-bouquet-heart",
@@ -46,6 +60,7 @@ export const PRODUCTS: Product[] = [
     desc: "Upload your favourite photo — printed and set in a heart-shaped bouquet. A one-of-a-kind personalised gift that transforms your cherished memory into a beautiful keepsake arrangement.",
     gradient: "from-red-900 via-rose-700 to-red-400",
     icon: "❤️",
+    photo: photoPhotoBouquetHeart,
   },
   {
     slug: "photo-bouquet-rose",
@@ -57,6 +72,7 @@ export const PRODUCTS: Product[] = [
     desc: "Beautiful rose-framed photo bouquet, perfect for gifting. Your favourite photograph elegantly framed and surrounded by premium silk roses in a premium gift presentation.",
     gradient: "from-amber-900 via-rose-700 to-amber-500",
     icon: "📸",
+    photo: photoPhotoBouquetRose,
   },
   {
     slug: "premium-hamper-luxury",
@@ -68,6 +84,7 @@ export const PRODUCTS: Product[] = [
     desc: "Chocolates, dry fruits, scented candle, and a handwritten card in a premium gift box. Each item is carefully curated and arranged in a luxurious presentation box, making it a statement gift for any occasion.",
     gradient: "from-amber-900 via-yellow-700 to-amber-500",
     icon: "🎁",
+    photo: photoHamperLuxury,
   },
   {
     slug: "premium-hamper-birthday",
@@ -79,6 +96,7 @@ export const PRODUCTS: Product[] = [
     desc: "Personalized birthday hamper with 15 items including snacks, chocolates, and a card. A curated collection of birthday favourites packed in a festive box that makes the birthday person feel truly celebrated.",
     gradient: "from-violet-900 via-purple-700 to-pink-500",
     icon: "🎂",
+    photo: photoHamperBirthday,
   },
   {
     slug: "couple-gift-set",
@@ -90,6 +108,7 @@ export const PRODUCTS: Product[] = [
     desc: "Matching keepsake frames, chocolates, and a red rose bouquet for couples. A thoughtfully designed set that celebrates love and togetherness with coordinated keepsakes they will treasure forever.",
     gradient: "from-red-900 via-rose-600 to-pink-400",
     icon: "💑",
+    photo: photoCoupleSet,
   },
   {
     slug: "couple-surprise-box",
@@ -101,6 +120,7 @@ export const PRODUCTS: Product[] = [
     desc: "A luxury box with personalized letters, chocolates, and couple accessories. Thoughtfully assembled to surprise and delight, this box celebrates the unique bond between two people with personalised keepsakes.",
     gradient: "from-rose-900 via-pink-700 to-red-400",
     icon: "💝",
+    photo: photoCoupleBox,
   },
   {
     slug: "cake-gift-combo-basic",
@@ -112,6 +132,7 @@ export const PRODUCTS: Product[] = [
     desc: "1 kg custom cake + chocolate bouquet. Order together and save more. The perfect pairing for a birthday celebration — a beautifully decorated cake alongside a stunning chocolate bouquet.",
     gradient: "from-orange-900 via-amber-700 to-yellow-500",
     icon: "🎂",
+    photo: photoComboBasic,
   },
   {
     slug: "cake-gift-combo-premium",
@@ -123,6 +144,7 @@ export const PRODUCTS: Product[] = [
     desc: "Premium 2 kg designer cake + luxury hamper. Perfect for grand celebrations. An extraordinary combination for milestone moments — a stunning designer cake paired with an indulgent luxury gift hamper.",
     gradient: "from-yellow-900 via-amber-600 to-orange-400",
     icon: "👑",
+    photo: photoComboPremuim,
   },
 ];
 
