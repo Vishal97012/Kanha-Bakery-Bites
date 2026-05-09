@@ -1,5 +1,5 @@
 import { Link, useLocation } from "wouter";
-import { Home, UtensilsCrossed, Cake, Phone, ShoppingCart, PartyPopper, Gift } from "lucide-react";
+import { Home, UtensilsCrossed, Cake, Phone, ShoppingCart, PartyPopper } from "lucide-react";
 import { useState, useEffect } from "react";
 import { getCart, getCartCount } from "@/lib/cart";
 
@@ -59,13 +59,6 @@ export default function Navbar() {
                 </span>
               </Link>
             ))}
-            <a
-              href="/kanha-gifts/"
-              className="px-3 py-1.5 rounded-lg text-sm font-medium transition-colors text-[#b8893a] hover:bg-[#fdf3e3] border border-[#e8dccc] flex items-center gap-1"
-            >
-              <Gift size={13} />
-              Gifts
-            </a>
           </div>
 
           {/* Cart icon (top bar) */}
@@ -84,32 +77,22 @@ export default function Navbar() {
 
       {/* Mobile bottom tab bar */}
       <nav className="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-white border-t border-[#e8dccc] shadow-[0_-4px_20px_rgba(90,46,31,0.10)]">
-        <div className="grid grid-cols-7 max-w-lg mx-auto">
+        <div className="grid grid-cols-6 max-w-lg mx-auto">
           {NAV_ITEMS.map(({ href, label, Icon }) => {
             const active = isActive(href);
             return (
               <Link key={href} href={href}>
                 <div className={`flex flex-col items-center justify-center py-2 gap-0.5 cursor-pointer transition-colors ${active ? "text-[#5a2e1f]" : "text-[#9a8a7d]"}`}>
-                  <div className={`p-1 rounded-xl transition-all ${active ? "bg-[#5a2e1f]/10 scale-110" : ""}`}>
-                    <Icon size={18} strokeWidth={active ? 2.2 : 1.7} />
+                  <div className={`p-1.5 rounded-xl transition-all ${active ? "bg-[#5a2e1f]/10 scale-110" : ""}`}>
+                    <Icon size={20} strokeWidth={active ? 2.2 : 1.7} />
                   </div>
-                  <span className={`text-[9px] font-semibold leading-none ${active ? "text-[#5a2e1f]" : "text-[#9a8a7d]"}`}>
+                  <span className={`text-[10px] font-semibold leading-none ${active ? "text-[#5a2e1f]" : "text-[#9a8a7d]"}`}>
                     {label}
                   </span>
                 </div>
               </Link>
             );
           })}
-
-          {/* Kanha Gifts tab */}
-          <a href="/kanha-gifts/">
-            <div className="flex flex-col items-center justify-center py-2 gap-0.5 cursor-pointer transition-colors text-[#b8893a]">
-              <div className="p-1 rounded-xl">
-                <Gift size={18} strokeWidth={1.7} />
-              </div>
-              <span className="text-[9px] font-semibold leading-none text-[#b8893a]">Gifts</span>
-            </div>
-          </a>
 
           {/* Cart tab */}
           <Link href="/cart">

@@ -1,3 +1,40 @@
-<svg width="180" height="180" viewBox="0 0 180 180" fill="none" xmlns="http://www.w3.org/2000/svg">
-<rect width="180" height="180" rx="36" fill="#FF3C00"/>
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="512" height="512" rx="110" fill="#5a2e1f"/>
+  <!-- Bottom cake tier -->
+  <rect x="96" y="340" width="320" height="90" rx="22" fill="#fdf8f3"/>
+  <path d="M96 352 Q115 332 134 352 Q153 332 172 352 Q191 332 210 352 Q229 332 248 352 Q267 332 286 352 Q305 332 324 352 Q343 332 362 352 Q381 332 400 352 Q416 332 416 352" stroke="#b8893a" stroke-width="9" fill="none" stroke-linecap="round"/>
+  <!-- Dots on bottom tier -->
+  <circle cx="160" cy="385" r="9" fill="#b8893a"/>
+  <circle cx="200" cy="385" r="9" fill="#d4a855"/>
+  <circle cx="240" cy="385" r="9" fill="#b8893a"/>
+  <circle cx="280" cy="385" r="9" fill="#d4a855"/>
+  <circle cx="320" cy="385" r="9" fill="#b8893a"/>
+  <circle cx="360" cy="385" r="9" fill="#d4a855"/>
+  <!-- Middle cake tier -->
+  <rect x="136" y="250" width="240" height="98" rx="20" fill="#fce8d5"/>
+  <path d="M136 263 Q153 244 170 263 Q187 244 204 263 Q221 244 238 263 Q255 244 272 263 Q289 244 306 263 Q323 244 340 263 Q357 244 376 263" stroke="#b8893a" stroke-width="8" fill="none" stroke-linecap="round"/>
+  <!-- Dots on middle tier -->
+  <circle cx="196" cy="300" r="7" fill="#b8893a"/>
+  <circle cx="228" cy="300" r="7" fill="#d4a855"/>
+  <circle cx="260" cy="300" r="7" fill="#b8893a"/>
+  <circle cx="292" cy="300" r="7" fill="#d4a855"/>
+  <circle cx="324" cy="300" r="7" fill="#b8893a"/>
+  <!-- Top cake tier -->
+  <rect x="184" y="170" width="144" height="88" rx="18" fill="#fdf8f3"/>
+  <path d="M184 182 Q198 165 212 182 Q226 165 240 182 Q254 165 268 182 Q282 165 296 182 Q310 165 328 182" stroke="#b8893a" stroke-width="7" fill="none" stroke-linecap="round"/>
+  <!-- K letter on top tier -->
+  <text x="208" y="244" font-family="Georgia, serif" font-size="58" font-weight="bold" fill="#5a2e1f">K</text>
+  <!-- Candles -->
+  <rect x="228" y="114" width="13" height="62" rx="6" fill="#b8893a"/>
+  <rect x="252" y="104" width="13" height="72" rx="6" fill="#d4a855"/>
+  <rect x="276" y="114" width="13" height="62" rx="6" fill="#b8893a"/>
+  <!-- Flames -->
+  <ellipse cx="234" cy="107" rx="8" ry="12" fill="#FFD700"/>
+  <ellipse cx="258" cy="97" rx="8" ry="12" fill="#FFD700"/>
+  <ellipse cx="282" cy="107" rx="8" ry="12" fill="#FFD700"/>
+  <ellipse cx="234" cy="110" rx="5" ry="7" fill="#FF6B00"/>
+  <ellipse cx="258" cy="100" rx="5" ry="7" fill="#FF6B00"/>
+  <ellipse cx="282" cy="110" rx="5" ry="7" fill="#FF6B00"/>
+  <!-- Plate -->
+  <rect x="76" y="426" width="360" height="28" rx="14" fill="#fdf8f3"/>
 </svg>
